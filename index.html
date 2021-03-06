@@ -71,12 +71,14 @@
 </header>
 
 <main>
-
+  
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Album example</h1>
         <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        
+        <!--- Buttons for ingredients and filters -->
         <p>
           <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Add an ingredient</button>
           <button type="button" class="btn btn-secondary my-2" data-toggle="modal" data-target="#filtersModal">Select filters</button>
@@ -85,23 +87,65 @@
     </div>
   </section>
 
+  <!--- Add ingredients modal -->
   <div class="modal fade" id="ingredientsModal" tabindex="-1" aria-labelledby="ingredientsModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="ingredientsModalLabel">Add Ingredients</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          
+          <form class="navbar-form " role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Enter ingredient">
+            </div>
+          </form>
+
+          <p>Start showing ingredients from search...</p>
+
+
+          <br>
+          <h6>My Added Ingredients:</h2>
+            
+          <div class="list-group" style="width:50%">
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="" aria-label="item1">
+              Chicken
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="" aria-label="item2">
+              Onions
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="" aria-label="item3">
+              Garlic
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="" aria-label="item4">
+              Chilli Powder
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="" aria-label="item5">
+              Tomatoes
+            </label>
+          </div>
+          <br>
+          <button type="button" class="btn btn-outline-danger">Remove from list</button>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-outline-primary">Add filters</button>
+          <button type="button" class="btn btn-primary">Find recipes</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!--- INSERT 'add filters modal' HERE-->
+
 
 
   <div class="album py-5 bg-light">
