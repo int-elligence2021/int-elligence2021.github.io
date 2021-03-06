@@ -71,17 +71,39 @@
   </div>
 </header>
 
-<main>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <span data-feather="home"></span>
+              Ingredients
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Filters
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Sort By
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <section class="py-5 text-center container">
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+  <section class="py-4 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Recipes Found</h1>
-        <p class="lead text-muted">Hello. Here are the recipes you have requested.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
       </div>
     </div>
   </section>
@@ -241,6 +263,8 @@
   </div>
 
 </main>
+</div>
+</div>
 
 <footer class="text-muted py-5">
   <div class="container">
