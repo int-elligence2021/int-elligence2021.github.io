@@ -44,6 +44,7 @@
 
     
     
+    
   </head>
   <body>
     
@@ -344,11 +345,29 @@
                 </div>
               </div>
             </div>
+
+            <!--- Time range filter -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="filterFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseFive" aria-expanded="false" aria-controls="filterCollapseFive">
+                  Time range
+                </button>
+              </h2>
+              <div id="filterCollapseFive" class="accordion-collapse collapse" aria-labelledby="filterFive" data-bs-parent="#filtersAccordian">
+                <div class="accordion-body">
+                  <p>Select the maximum preperation time:</p>
+                  <input type="range" class="form-range" name="range" step="5" min="0" max="300" value="0" onchange="timeRangeSlider.value=value">
+                  <input type="text" class="form-control" value="0" id="timeRangeSlider" style="width: auto;"></input>
+                  <br>
+                  <p><strong>Note:</strong> Time specified is in mins</p>
+
+                </div>
+              </div>
+            </div>
           </div>
+        </div>       
+          
 
-
-
-        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Add ingredients</button>
