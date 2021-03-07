@@ -60,17 +60,64 @@
               Filters
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
+
+            <!-- Button trigger sortbyModal -->
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#sortbyModal">
               Sort By
-            </a>
-          </li>
+            </button>
+
         </ul>
       </div>
     </nav>
 
-<script src="/path/to/infinite-scroll.pkgd.min.js"></script>
+<!-- sortbyModal -->
+<div class="modal fade" id="sortbyModal" tabindex="-1" aria-labelledby="sortbyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sortbyModalLabel">Sort Recipes By</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Alphabetical order
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Shortest to longest cooking time
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Longest to shortest cooking time
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+          <label class="form-check-label" for="flexCheckDefault">
+            Lowest to highest calories
+          </label>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Sort</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- main -->
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
 <div class="container"
@@ -83,6 +130,7 @@
     </div>
   </section>
 
+  <!-- album template - recipes -->
   <div class="album py-5 bg-light">
     <div class="container">
 
