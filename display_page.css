@@ -7,3 +7,8 @@
     text-align: center;
 }
 
+.emphasis{
+    font-style: italic;
+    font-weight: bold;
+    color: gray;
+}
