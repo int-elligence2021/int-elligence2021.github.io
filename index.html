@@ -167,6 +167,8 @@
           
           <!--- Accordion for list of filters -->
           <div class="accordion accordion-flush" id="filtersAccordian">
+
+            <!--- Dietary Requirements filter -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="filterOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseOne" aria-expanded="false" aria-controls="filterCollapseOne">
@@ -174,7 +176,6 @@
                 </button>
               </h2>
 
-              <!--- Filter one (dietary requirements temp)-->
               <div id="filterCollapseOne" class="accordion-collapse collapse" aria-labelledby="filterOne" data-bs-parent="#filtersAccordian">
                 <div class="accordion-body">
                   <p>Select any dietary requirements which you may require:</p>
@@ -203,6 +204,8 @@
                 </div>
               </div>
             </div>
+
+            <!--- Cuisine filter -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="filterTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseTwo" aria-expanded="false" aria-controls="filterCollapseTwo">
@@ -211,10 +214,62 @@
               </h2>
               <div id="filterCollapseTwo" class="accordion-collapse collapse" aria-labelledby="filterTwo" data-bs-parent="#filtersAccordian">
                 <div class="accordion-body">
-                  temp...
+                  <p>Select your preferred cuisine</p>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine1">
+                    <label class="form-check-label" for="cuisine1">
+                      Chinese
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine2">
+                    <label class="form-check-label" for="cuisine2">
+                      Italian
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine3">
+                    <label class="form-check-label" for="cuisine3">
+                      Mexican
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine4">
+                    <label class="form-check-label" for="cuisine4">
+                      Indian
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine5">
+                    <label class="form-check-label" for="cuisine5">
+                      Thai
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine6">
+                    <label class="form-check-label" for="cuisine6">
+                      Middle Eastern
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine7">
+                    <label class="form-check-label" for="cuisine7">
+                      Japanese
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="anycuisine" checked>
+                    <label class="form-check-label" for="anycuisine">
+                      Include all cuisines :)
+                    </label>
+                  </div>
+                  
                 </div>
               </div>
             </div>
+
+            <!--- Meal type filter -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="filterThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseThree" aria-expanded="false" aria-controls="filterCollapseThree">
@@ -223,7 +278,26 @@
               </h2>
               <div id="filterCollapseThree" class="accordion-collapse collapse" aria-labelledby="filterThree" data-bs-parent="#filtersAccordian">
                 <div class="accordion-body">
-                  temp...
+                  
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mealtype" id="sav">
+                    <label class="form-check-label" for="sav">
+                      Savoury
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mealtype" id="sweet">
+                    <label class="form-check-label" for="sweet">
+                      Sweet
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mealtype" id="sweetnsav" checked>
+                    <label class="form-check-label" for="sweetnsav">
+                      Any
+                    </label>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -241,18 +315,6 @@
     </div>
   </div>
 
-          <br>
-          <button type="button" class="btn btn-outline-danger">Remove from list</button>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-outline-primary">Add ingredients</button>
-          <button type="button" class="btn btn-primary">Find recipes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="album py-5 bg-light">
     <div class="container">
