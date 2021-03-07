@@ -81,7 +81,7 @@
         <!--- Buttons for ingredients and filters -->
         <p>
           <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Add an ingredient</button>
-          <button type="button" class="btn btn-secondary my-2" data-toggle="modal" data-target="#filtersModal">Select filters</button>
+          <button type="button" class="btn btn-secondary my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Select filters</button>
         </p>
       </div>
     </div>
@@ -145,8 +145,32 @@
   </div>
 
   <!--- INSERT 'add filters modal' HERE-->
+  <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filterssModalLabel">Select Filters</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
 
+          <p>Select your filters...</p>
+          
+          <br>
+          <h6>My Added Filters:</h2>
 
+          <br>
+          <button type="button" class="btn btn-outline-danger">Remove from list</button>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary">Add ingredients</button>
+          <button type="button" class="btn btn-primary">Find recipes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="album py-5 bg-light">
     <div class="container">
