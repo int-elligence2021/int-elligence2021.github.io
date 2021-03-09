@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="int elligence;">
     <meta name="generator" content="Hugo 0.80.0">
-    <title>Album example · Bootstrap v5.0</title>
+    <title>Website name</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -18,6 +18,7 @@
     <!--- Bootstrap JS (idk where its located) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -44,7 +45,6 @@
 
     
     
-    
   </head>
   <body>
     
@@ -53,15 +53,18 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+          <h4 class="text-white">About Us</h4>
+          <p class="text-muted">Hi Welcome to our website "website-name". This is a UNSW project presented by us, "int elligence;" for 2021 T1 SENG2021.
+            Our website aims to allow home cooks to be more resourceful and produce less waste when they cook at home using whatever ingredients they have on hand.
+            To find out more, check out the links section.
+          </p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
-          <h4 class="text-white">Contact</h4>
+          <h4 class="text-white">Links</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
+            <li><a href="https://github.com/joelhuang576/SENG2021_Project/tree/home_page" class="text-white">Check out our code on GitHub</a></li>
+            <li><a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/groups/23860" class="text-white">Team Information</a></li>
+            <li><a href="#" class="text-white">Something else</a></li>
           </ul>
         </div>
       </div>
@@ -70,8 +73,10 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        <strong>Album</strong>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
+          <path d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5zm0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6z"/>
+        </svg>
+        <strong style="margin-left:2%">WEBSITE-NAME</strong>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -85,8 +90,8 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <h1 class="fw-light">Welcome to our landing page</h1>
+        <p class="lead text-muted">This website is presented by <i>"int elligence;"</i> from UNSW SENG2021 2021 T1. To begin, start by either adding your current ingredients or start filtering the type of dishes suggested to you.</p>
         
         <!--- Buttons for ingredients and filters -->
         <p>
@@ -148,7 +153,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
-          <button type="button" class="btn btn-primary">Find recipes</button>
+          <button type="button" class="btn btn-primary"><a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/" style="color:inherit;text-decoration: none">Find recipes</a></button>
         </div>
       </div>
     </div>
@@ -371,7 +376,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Add ingredients</button>
-          <button type="button" class="btn btn-primary">Find recipes</button>
+          <button type="button" class="btn btn-primary"><a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/" style="color:inherit;text-decoration: none">Find recipes</a></button>
         </div>
       </div>
     </div>
@@ -539,8 +544,7 @@
     <p class="float-end mb-1">
       <a href="#">Back to top</a>
     </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+    <p class="mb-1">Made by <i>"int elligence;"</i></p>
   </div>
 </footer>
 
