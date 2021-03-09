@@ -1,3 +1,10 @@
+/**
+ * Adding search items to a list..
+ * Source:
+ * Adel Elkhodary at https://stackoverflow.com/questions/50308538/dynamically-add-a-bootstrap-4-list-item-on-button-click
+*/
+
+
 var button_add = document.getElementById("enteringredients");
 var input_add = document.getElementById("typeingredient");
 var ul_add = document.querySelector("#add_ingredients_list");
