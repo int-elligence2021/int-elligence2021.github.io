@@ -122,7 +122,7 @@
               </div>
               <p>Your ingredients will be listed here:</p>
               <div class="col-12">
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush" id="add_ingredients_list">
                   <li class="list-group-item">Oil</li>
                   <li class="list-group-item">Salt</li>
                   <li class="list-group-item">Vinegar</li>
@@ -364,30 +364,27 @@
             </h2>
             <div id="filterCollapseSix" class="accordion-collapse collapse" aria-labelledby="filterSix" data-bs-parent="#filtersAccordian">
               <div class="accordion-body">
-                <p>Select ingredients to exclude from recipe:</p>
-
-                <form class="navbar-form " role="search">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter ingredient">
-                  </div>
-                </form>
-
-                <br>
-                <h6>My Excluded Ingredients:</h2>
-                  
-                <div class="list-group" style="width:50%">
-                  <label class="list-group-item">
-                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="item1">
-                    Peanuts
-                  </label>
-                  <label class="list-group-item">
-                    <input class="form-check-input me-1" type="checkbox" value="" aria-label="item2">
-                    Walnuts
-                  </label>
                 
+                <div class="container">
+                  <div class="row justify-center">
+                    <div class="col-12">
+                      <p>Enter ingredients which you <strong>DO NOT WANT</strong> in your dish:</p>
+                      <div class="input-group mb-3">
+                        <input id="typerem" type="text" class="form-control" placeholder="Remove ingredients" aria-label="Add an item" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-danger" id="remingredient" type="button">Remove</button>
+                        </div>
+                      </div>
+              
+                    </div>
+                    <p>Ingredients you don't want in your search will be listed here:</p>
+                    <div class="col-12">
+                      <ul class="list-group list-group-flush" id="rem_ingredients_list">
+
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <br>
-                <button type="button" class="btn btn-outline-danger">Remove from list</button>
 
               </div>
             </div>
@@ -586,7 +583,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     
     <!--- JS used for add ingredients search bar -->>
-    <script type="text/javascript" src="src/search.js"></script> 
+    <script type="text/javascript" src="src/search.js"></script>
+    
+    
       
   </body>
   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
