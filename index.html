@@ -39,6 +39,12 @@
         border-color: #0275d8;
       }
 
+      /* Scrollable modal for long list of ingredients */
+      .modal-body {
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+      }
+
     </style>
 
     
@@ -59,9 +65,11 @@
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Links</h4>
-          <a href="https://github.com/joelhuang576/SENG2021_Project/tree/home_page" class="text-white">Check out our code on GitHub</a><br>
-          <a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/groups/23860" class="text-white">Team Information</a><br>
-          <a href="#" class="text-white">Something else</a><br>
+          <ul class="type-unstyled">
+            <li><a href="https://github.com/joelhuang576/SENG2021_Project/tree/home_page" class="text-white">Check out our code on GitHub</a></li>
+            <li><a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/groups/23860" class="text-white">Team Information</a></li>
+            <li><a href="#" class="text-white">Something else</a></li>
+          </ul>
         </div>
       </div>
     </div>
