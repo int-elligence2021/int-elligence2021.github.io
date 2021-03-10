@@ -87,52 +87,41 @@
           </div>
           <div class="modal-body">
             
-            <form class="navbar-form " role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Enter ingredient">
+            <div class="container">
+              <div class="row justify-center">
+                <div class="col-12">
+                  <p>Start typing in your ingredients:</p>
+                  <div class="input-group mb-3">
+                    <input id="typeingredient" type="text" class="form-control" placeholder="Add ingredients" aria-label="Add an item" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-info" id="enteringredients" type="button">Add</button>
+                    </div>
+                  </div>
+          
+                </div>
+                <p>Your ingredients will be listed here:</p>
+                <div class="col-12">
+                  <ul class="list-group list-group-flush" id="add_ingredients_list">
+                    <li class="list-group-item">Oil</li>
+                    <li class="list-group-item">Salt</li>
+                    <li class="list-group-item">Vinegar</li>
+                    <li class="list-group-item">Milk</li>
+                    <li class="list-group-item">Sugar</li>
+                    <li class="list-group-item">Flour</li>
+                  </ul>
+                </div>
               </div>
-            </form>
-  
-            <p>Start showing ingredients from search...</p>
-  
-  
-            <br>
-            <h6>My Added Ingredients:</h2>
-              
-            <div class="list-group" style="width:50%">
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item1">
-                Chicken
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item2">
-                Onions
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item3">
-                Garlic
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item4">
-                Chilli Powder
-              </label>
-              <label class="list-group-item">
-                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item5">
-                Tomatoes
-              </label>
             </div>
-            <br>
-            <button type="button" class="btn btn-outline-danger">Remove from list</button>
   
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
-            <button type="button" class="btn btn-primary">Find recipes</button>
+            <button type="button" class="btn btn-primary"><a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/" style="color:inherit;text-decoration: none"></a>Find recipes</button>
           </div>
         </div>
       </div>
-    </div>
+    </div>  
 
   <!--- Filters modal -->
   <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
@@ -345,7 +334,44 @@
               </div>
             </div>
           </div>
-        </div>       
+        </div>
+          <!--- Excluded Ingredients filter -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="filterSix">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseSix" aria-expanded="false" aria-controls="filterCollapseSix">
+                Negative Search
+              </button>
+            </h2>
+            <div id="filterCollapseSix" class="accordion-collapse collapse" aria-labelledby="filterSix" data-bs-parent="#filtersAccordian">
+              <div class="accordion-body">
+                
+                <div class="container">
+                  <div class="row justify-center">
+                    <div class="col-12">
+                      <p>Enter ingredients which you <strong>DO NOT WANT</strong> in your dish:</p>
+                      <div class="input-group mb-3">
+                        <input id="typerem" type="text" class="form-control" placeholder="Remove ingredients" aria-label="Add an item" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-danger" id="remingredient" type="button">Remove</button>
+                        </div>
+                      </div>
+              
+                    </div>
+                    <p>Ingredients you don't want in your search will be listed here:</p>
+                    <div class="col-12">
+                      <ul class="list-group list-group-flush" id="rem_ingredients_list">
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
           
 
         <div class="modal-footer">
