@@ -33,21 +33,48 @@
           font-size: 3.5rem;
         }
       }
-
-      .center {
-        text-align: center
-      }
     </style>
 
-    <link href="results_page.css" rel="stylesheet">
+    <link href="display_page.css" rel="stylesheet">
   </head>
   <body>
 
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
-    <p class="center">Recipe Finder</p>
-  </a>
-</header>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About Us</h4>
+              <p class="text-muted">Hi Welcome to our website "website-name". This is a UNSW project presented by us, "int elligence;" for 2021 T1 SENG2021.
+                Our website aims to allow home cooks to be more resourceful and produce less waste when they cook at home using whatever ingredients they have on hand.
+                To find out more, check out the links section.
+              </p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Links</h4>
+              <ul class="type-unstyled">
+                <li><a href="https://github.com/joelhuang576/SENG2021_Project/tree/home_page" class="text-white">Check out our code on GitHub</a></li>
+                <li><a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/groups/23860" class="text-white">Team Information</a></li>
+                <li><a href="#" class="text-white">Something else</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-egg" viewBox="0 0 16 16">
+              <path d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5zm0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6z"/>
+            </svg>
+            <strong style="margin-left:2%">WEBSITE-NAME</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
 
 <div class="container-fluid">
   <div class="row">
@@ -87,41 +114,52 @@
           </div>
           <div class="modal-body">
             
-            <div class="container">
-              <div class="row justify-center">
-                <div class="col-12">
-                  <p>Start typing in your ingredients:</p>
-                  <div class="input-group mb-3">
-                    <input id="typeingredient" type="text" class="form-control" placeholder="Add ingredients" aria-label="Add an item" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-info" id="enteringredients" type="button">Add</button>
-                    </div>
-                  </div>
-          
-                </div>
-                <p>Your ingredients will be listed here:</p>
-                <div class="col-12">
-                  <ul class="list-group list-group-flush" id="add_ingredients_list">
-                    <li class="list-group-item">Oil</li>
-                    <li class="list-group-item">Salt</li>
-                    <li class="list-group-item">Vinegar</li>
-                    <li class="list-group-item">Milk</li>
-                    <li class="list-group-item">Sugar</li>
-                    <li class="list-group-item">Flour</li>
-                  </ul>
-                </div>
+            <form class="navbar-form " role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter ingredient">
               </div>
+            </form>
+  
+            <p>Start showing ingredients from search...</p>
+  
+  
+            <br>
+            <h6>My Added Ingredients:</h2>
+              
+            <div class="list-group" style="width:50%">
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item1">
+                Chicken
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item2">
+                Onions
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item3">
+                Garlic
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item4">
+                Chilli Powder
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item5">
+                Tomatoes
+              </label>
             </div>
+            <br>
+            <button type="button" class="btn btn-outline-danger">Remove from list</button>
   
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
-            <button type="button" class="btn btn-primary"><a href="https://webcms3.cse.unsw.edu.au/SENG2021/21T1/" style="color:inherit;text-decoration: none"></a>Find recipes</button>
+            <button type="button" class="btn btn-primary">Find recipes</button>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
 
   <!--- Filters modal -->
   <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
@@ -334,44 +372,7 @@
               </div>
             </div>
           </div>
-        </div>
-          <!--- Excluded Ingredients filter -->
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="filterSix">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseSix" aria-expanded="false" aria-controls="filterCollapseSix">
-                Negative Search
-              </button>
-            </h2>
-            <div id="filterCollapseSix" class="accordion-collapse collapse" aria-labelledby="filterSix" data-bs-parent="#filtersAccordian">
-              <div class="accordion-body">
-                
-                <div class="container">
-                  <div class="row justify-center">
-                    <div class="col-12">
-                      <p>Enter ingredients which you <strong>DO NOT WANT</strong> in your dish:</p>
-                      <div class="input-group mb-3">
-                        <input id="typerem" type="text" class="form-control" placeholder="Remove ingredients" aria-label="Add an item" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-danger" id="remingredient" type="button">Remove</button>
-                        </div>
-                      </div>
-              
-                    </div>
-                    <p>Ingredients you don't want in your search will be listed here:</p>
-                    <div class="col-12">
-                      <ul class="list-group list-group-flush" id="rem_ingredients_list">
-
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        </div>
+        </div>       
           
 
         <div class="modal-footer">
