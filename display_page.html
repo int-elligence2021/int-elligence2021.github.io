@@ -49,26 +49,351 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
-              <span data-feather="home"></span>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ingredientsModal">
               Ingredients
-            </a>
+            </button>              
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="file"></span>
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#filtersModal">
               Filters
-            </a>
+            </button>
+          </li>
+          <!-- Button trigger sortbyModal -->
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sortbyModal">
+              Sort By
+            </button>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="shopping-cart"></span>
-              Sort By
-            </a>
+            <button type="button" class="btn btn-link">Include Extra Recipes</button>
           </li>
         </ul>
       </div>
     </nav>
+
+    <!--- Add ingredients modal -->
+    <div class="modal fade" id="ingredientsModal" tabindex="-1" aria-labelledby="ingredientsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ingredientsModalLabel">Add Ingredients</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+            <form class="navbar-form " role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Enter ingredient">
+              </div>
+            </form>
+  
+            <p>Start showing ingredients from search...</p>
+  
+  
+            <br>
+            <h6>My Added Ingredients:</h2>
+              
+            <div class="list-group" style="width:50%">
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item1">
+                Chicken
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item2">
+                Onions
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item3">
+                Garlic
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item4">
+                Chilli Powder
+              </label>
+              <label class="list-group-item">
+                <input class="form-check-input me-1" type="checkbox" value="" aria-label="item5">
+                Tomatoes
+              </label>
+            </div>
+            <br>
+            <button type="button" class="btn btn-outline-danger">Remove from list</button>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
+            <button type="button" class="btn btn-primary">Find recipes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!--- Filters modal -->
+  <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filtersModalLabel">Filters</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <h5>List of filters...</h5>
+          
+          <!--- Accordion for list of filters -->
+          <div class="accordion accordion-flush" id="filtersAccordian">
+
+            <!--- Dietary Requirements filter -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="filterOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseOne" aria-expanded="false" aria-controls="filterCollapseOne">
+                  Dietary Requirements
+                </button>
+              </h2>
+
+              <div id="filterCollapseOne" class="accordion-collapse collapse" aria-labelledby="filterOne" data-bs-parent="#filtersAccordian">
+                <div class="accordion-body">
+                  <p>Select any dietary requirements which you may require:</p>
+
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="DR_vegan">
+                    <label class="form-check-label" for="DR_vegan">Vegan</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="DR_vego">
+                    <label class="form-check-label" for="DR_vego">Vegetarian</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="DR_halal">
+                    <label class="form-check-label" for="DR_halal">Halal</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="DR_GF">
+                    <label class="form-check-label" for="DR_GF">Gluten Free</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="DR_LI">
+                    <label class="form-check-label" for="DR_LI">Lactose Intolerant</label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          <!--- Nutrition Requirements filter -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="filterTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseTwo" aria-expanded="false" aria-controls="filterCollapseTwo">
+                Nutrition Requirements
+              </button>
+            </h2>
+            <div id="filterCollapseTwo" class="accordion-collapse collapse" aria-labelledby="filterTwo" data-bs-parent="#filtersAccordian">
+              <div class="accordion-body">
+        
+                <p>Select any nutritional requirements which you may require:</p>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="nutrition1">
+                  <label class="form-check-label" for="nutrition1">Low-Calorie</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="nutrition2">
+                  <label class="form-check-label" for="nutrition2">High-Calorie</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="nutrition3">
+                  <label class="form-check-label" for="nutrition3">Low-Cholesterol</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="nutrition4">
+                  <label class="form-check-label" for="nutrition4">Low-Sodium</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="nutrition5">
+                  <label class="form-check-label" for="nutrition5">High-Protein</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="nutrition6">
+                  <label class="form-check-label" for="nutrition6">Low-Protein</label>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          
+
+            <!--- Cuisine filter -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="filterThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseThree" aria-expanded="false" aria-controls="filterCollapseThree">
+                  Cuisine
+                </button>
+              </h2>
+              <div id="filterCollapseThree" class="accordion-collapse collapse" aria-labelledby="filterThree" data-bs-parent="#filtersAccordian">
+                <div class="accordion-body">
+
+                  <p>Select your preferred cuisine</p>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine1">
+                    <label class="form-check-label" for="cuisine1">
+                      Chinese
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine2">
+                    <label class="form-check-label" for="cuisine2">
+                      Italian
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine3">
+                    <label class="form-check-label" for="cuisine3">
+                      Mexican
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine4">
+                    <label class="form-check-label" for="cuisine4">
+                      Indian
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine5">
+                    <label class="form-check-label" for="cuisine5">
+                      Thai
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine6">
+                    <label class="form-check-label" for="cuisine6">
+                      Middle Eastern
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="cuisine7">
+                    <label class="form-check-label" for="cuisine7">
+                      Japanese
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cuisine" id="anycuisine" checked>
+                    <label class="form-check-label" for="anycuisine">
+                      Include all cuisines :)
+                    </label>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <!--- Meal type filter -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="filterFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseFour" aria-expanded="false" aria-controls="filterCollapseFour">
+                  Meal type
+                </button>
+              </h2>
+              <div id="filterCollapseFour" class="accordion-collapse collapse" aria-labelledby="filterFour" data-bs-parent="#filtersAccordian">
+                <div class="accordion-body">
+
+                  
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mealtype" id="sav">
+                    <label class="form-check-label" for="sav">
+                      Savoury
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mealtype" id="sweet">
+                    <label class="form-check-label" for="sweet">
+                      Sweet
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="mealtype" id="sweetnsav" checked>
+                    <label class="form-check-label" for="sweetnsav">
+                      Any
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!--- Time range filter -->
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="filterFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseFive" aria-expanded="false" aria-controls="filterCollapseFive">
+                  Time range
+                </button>
+              </h2>
+              <div id="filterCollapseFive" class="accordion-collapse collapse" aria-labelledby="filterFive" data-bs-parent="#filtersAccordian">
+                <div class="accordion-body">
+                  <p>Select the maximum preperation time:</p>
+                  <input type="range" class="form-range" name="range" step="5" min="0" max="300" value="0" onchange="timeRangeSlider.value=value">
+                  <input type="text" class="form-control" value="0" id="timeRangeSlider" style="width: auto;"></input>
+                  <br>
+                  <p><strong>Note:</strong> Time specified is in mins</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>       
+          
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Add ingredients</button>
+          <button type="button" class="btn btn-primary">Find recipes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- sortbyModal -->
+<div class="modal fade" id="sortbyModal" tabindex="-1" aria-labelledby="sortbyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sortbyModalLabel">Sort Recipes By</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="sortby_alpha">
+          <label class="form-check-label" for="sortby_alpha">Alphabetical order</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="sortby_shorttime">
+          <label class="form-check-label" for="sortby_shorttime">
+            Shortest to longest cooking time
+          </label>
+        </div>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="sortby_longtime">
+          <label class="form-check-label" for="sortby_longtime">
+            Longest to shortest cooking time
+          </label>
+        </div>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="sortby_calories">
+          <label class="form-check-label" for="sortby_calories">
+            Lowest to highest calories
+          </label>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Sort</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="/path/to/infinite-scroll.pkgd.min.js"></script>
 
