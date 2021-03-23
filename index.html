@@ -7,14 +7,13 @@
     <meta name="author" content="int elligence;">
     <meta name="generator" content="Hugo 0.80.0">
     <title>HomeCooks · Home Page</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
-
     
 
     <!-- Bootstrap core files -->
     <link href="SourceCode_and_Documentation/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="SourceCode_and_Documentation/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <link href="SourceCode_and_Documentation/modal.css" rel="stylesheet">
     
 
     <style>
@@ -39,15 +38,9 @@
         border-color: #0275d8;
       }
 
-      /* Scrollable modal for long list of ingredients */
-      .modal-body {
-        max-height: calc(100vh - 200px);
-        overflow-y: auto;
-      }
-
     </style>
 
-        
+
     
   </head>
   <body>
@@ -131,12 +124,12 @@
               <p>Your ingredients will be listed here:</p>
               <div class="col-12">
                 <ul class="list-group list-group-flush" id="add_ingredients_list">
-                  <li class="list-group-item" onclick="remove_list_item(this)">Oil</li>
-                  <li class="list-group-item" onclick="remove_list_item(this)">Salt</li>
-                  <li class="list-group-item" onclick="remove_list_item(this)">Vinegar</li>
-                  <li class="list-group-item" onclick="remove_list_item(this)">Milk</li>
-                  <li class="list-group-item" onclick="remove_list_item(this)">Sugar</li>
-                  <li class="list-group-item" onclick="remove_list_item(this)">Flour</li>
+                  <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Oil</li>
+                  <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Salt</li>
+                  <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Vinegar</li>
+                  <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Milk</li>
+                  <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Sugar</li>
+                  <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Flour</li>
                 </ul>
               </div>
             </div>
