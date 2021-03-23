@@ -148,7 +148,7 @@
       </div>
     </div>  
 
-    <!--- Add filters modal -->
+        <!--- Add filters modal -->
     <div class="modal fade" id="filtersModal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -156,13 +156,13 @@
             <h5 class="modal-title" id="filtersModalLabel">Add filters</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-  
+
           <div class="modal-body">
             <h5>List of filters...</h5>
             
             <!--- Accordion for list of filters -->
             <div class="accordion accordion-flush" id="filtersAccordian">
-  
+
               <!--- Dietary Requirements filter -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="filterOne">
@@ -170,11 +170,31 @@
                     Dietary Requirements
                   </button>
                 </h2>
-  
+
                 <div id="filterCollapseOne" class="accordion-collapse collapse" aria-labelledby="filterOne" data-bs-parent="#filtersAccordian">
                   <div class="accordion-body">
                     <p>Select any dietary requirements which you may require:</p>
-  
+
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="DR_dairy">
+                      <label class="form-check-label" for="DR_dairy">Dairy Free</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="DR_egg">
+                      <label class="form-check-label" for="DR_egg">Egg Free</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="DR_GF">
+                      <label class="form-check-label" for="DR_GF">Gluten Free</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="DR_nut">
+                      <label class="form-check-label" for="DR_nut">Nut free</label>
+                    </div>
+                    <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="DR_halal">
+                      <label class="form-check-label" for="DR_halal">Pork Free</label>
+                    </div>
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="DR_vegan">
                       <label class="form-check-label" for="DR_vegan">Vegan</label>
@@ -183,23 +203,11 @@
                       <input class="form-check-input" type="checkbox" id="DR_vego">
                       <label class="form-check-label" for="DR_vego">Vegetarian</label>
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="DR_halal">
-                      <label class="form-check-label" for="DR_halal">Halal</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="DR_GF">
-                      <label class="form-check-label" for="DR_GF">Gluten Free</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="DR_LI">
-                      <label class="form-check-label" for="DR_LI">Lactose Intolerant</label>
-                    </div>
-  
+
                   </div>
                 </div>
               </div>
-  
+
             <!--- Nutrition Requirements filter -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="filterTwo">
@@ -213,34 +221,34 @@
                   <p>Select any nutritional requirements which you may require:</p>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="nutrition1">
-                    <label class="form-check-label" for="nutrition1">Low-Calorie</label>
+                    <label class="form-check-label" for="nutrition1">Balanced</label>
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="nutrition2">
-                    <label class="form-check-label" for="nutrition2">High-Calorie</label>
+                    <label class="form-check-label" for="nutrition2">High-Fiber</label>
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="nutrition3">
-                    <label class="form-check-label" for="nutrition3">Low-Cholesterol</label>
+                    <label class="form-check-label" for="nutrition3">High-Protein</label>
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="nutrition4">
-                    <label class="form-check-label" for="nutrition4">Low-Sodium</label>
+                    <label class="form-check-label" for="nutrition4">Low-Carb</label>
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="nutrition5">
-                    <label class="form-check-label" for="nutrition5">High-Protein</label>
+                    <label class="form-check-label" for="nutrition5">Low-Fat</label>
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="nutrition6">
-                    <label class="form-check-label" for="nutrition6">Low-Protein</label>
+                    <label class="form-check-label" for="nutrition6">Low-Sodium</label>
                   </div>
-  
+
                 </div>
               </div>
             </div>
             
-  
+
               <!--- Cuisine filter -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="filterThree">
@@ -250,43 +258,43 @@
                 </h2>
                 <div id="filterCollapseThree" class="accordion-collapse collapse" aria-labelledby="filterThree" data-bs-parent="#filtersAccordian">
                   <div class="accordion-body">
-  
+
                     <p>Select your preferred cuisine</p>
-  
+
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="cuisine" id="cuisine1">
                       <label class="form-check-label" for="cuisine1">
-                        Chinese
+                        American
                       </label>
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="cuisine" id="cuisine2">
                       <label class="form-check-label" for="cuisine2">
-                        Italian
+                        British
                       </label>
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="cuisine" id="cuisine3">
                       <label class="form-check-label" for="cuisine3">
-                        Mexican
+                        Chinese
                       </label>
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="cuisine" id="cuisine4">
                       <label class="form-check-label" for="cuisine4">
-                        Indian
+                        French
                       </label>
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="cuisine" id="cuisine5">
                       <label class="form-check-label" for="cuisine5">
-                        Thai
+                        Indian
                       </label>
                     </div>
                     <div class="form-check">
                       <input class="form-check-input" type="radio" name="cuisine" id="cuisine6">
                       <label class="form-check-label" for="cuisine6">
-                        Middle Eastern
+                        Italian
                       </label>
                     </div>
                     <div class="form-check">
@@ -296,46 +304,94 @@
                       </label>
                     </div>
                     <div class="form-check">
+                      <input class="form-check-input" type="radio" name="cuisine" id="cuisine8">
+                      <label class="form-check-label" for="cuisine8">
+                        Mediterranean
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="cuisine" id="cuisine9">
+                      <label class="form-check-label" for="cuisine9">
+                        Mexican
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="cuisine" id="cuisine10">
+                      <label class="form-check-label" for="cuisine10">
+                        Middle Eastern
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="cuisine" id="cuisine11">
+                      <label class="form-check-label" for="cuisine11">
+                        South East Asian
+                      </label>
+                    </div>
+                    <div class="form-check">
                       <input class="form-check-input" type="radio" name="cuisine" id="anycuisine" checked>
                       <label class="form-check-label" for="anycuisine">
-                        Include all cuisines :)
+                        All of the above
                       </label>
                     </div>
                     
                   </div>
                 </div>
               </div>
-  
-              <!--- Meal type filter -->
+
+              <!--- Dish type filter -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="filterFour">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#filterCollapseFour" aria-expanded="false" aria-controls="filterCollapseFour">
-                    Meal type
+                    Dish type
                   </button>
                 </h2>
                 <div id="filterCollapseFour" class="accordion-collapse collapse" aria-labelledby="filterFour" data-bs-parent="#filtersAccordian">
                   <div class="accordion-body">
-  
+
                     
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="mealtype" id="sav">
-                      <label class="form-check-label" for="sav">
-                        Savoury
+                      <input class="form-check-input" type="radio" name="mealtype" id="alcohol">
+                      <label class="form-check-label" for="alcohol">
+                        Alcohol
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="mealtype" id="sweet">
-                      <label class="form-check-label" for="sweet">
-                        Sweet
+                      <input class="form-check-input" type="radio" name="mealtype" id="drinks">
+                      <label class="form-check-label" for="drinks">
+                        Other Drinks
                       </label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="mealtype" id="sweetnsav" checked>
-                      <label class="form-check-label" for="sweetnsav">
+                      <input class="form-check-input" type="radio" name="mealtype" id="dessert">
+                      <label class="form-check-label" for="dessert">
+                        Dessert
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="mealtype" id="main_course">
+                      <label class="form-check-label" for="main_course">
+                        Main Course
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="mealtype" id="salad">
+                      <label class="form-check-label" for="salad">
+                        Salad
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="mealtype" id="starter">
+                      <label class="form-check-label" for="starter">
+                        Starter
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="mealtype" id="any_dish_type" checked>
+                      <label class="form-check-label" for="any_dish_type">
                         Any
                       </label>
                     </div>
-  
+
                   </div>
                 </div>
               </div>
