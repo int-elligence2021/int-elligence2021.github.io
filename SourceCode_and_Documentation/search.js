@@ -15,6 +15,9 @@ button_add.addEventListener("click", function() {
   li_add.className = 'list-group-item';
   li_add.textContent = input_add.value;
   li_add.setAttribute('onclick','remove_list_item(this)');
+  li_add.setAttribute('data-toggle','tooltip');
+  li_add.setAttribute('data-placement','top');
+  li_add.setAttribute('title','Click to remove');
   ul_add.appendChild(li_add);
 })
 
@@ -29,6 +32,9 @@ button_rem.addEventListener("click", function() {
   li_rem.className = 'list-group-item';
   li_rem.textContent = input_rem.value;
   li_rem.setAttribute('onclick','remove_list_item(this)');
+  li_rem.setAttribute('data-toggle','tooltip');
+  li_rem.setAttribute('data-placement','top');
+  li_rem.setAttribute('title','Click to remove');
   ul_rem.appendChild(li_rem);
 })
 
