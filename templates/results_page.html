@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}HomeCooks · Recipes{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ingredientsModal">
+              Ingredients
+            </button>              
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#filtersModal">
+              Filters
+            </button>
+          </li>
+          <!-- Button trigger sortbyModal -->
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sortbyModal">
+              Sort By
+            </button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-link">Include Extra Recipes</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<!-- main -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+<div class="container"
+  data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
+  <section class="py-4 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Recipes Found</h1>
+        <h5 class="fw-light">You have all the ingredients!</h5>
+      </div>
+    </div>
+  </section>
+
+  <!-- album template - recipes -->
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{ url_for('static', filename='pasta.jpg')}}" alt="Pasta" style="width:100%;max-width:600px;height:225px">
+
+            <div class="card-body">
+              <h5 class="mt-0">Creamy Carbonara</h5>
+              <a href="{{ url_for('display_page')}}" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Cooking time: 10 min</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 2</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 3</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 4</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 5</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 6</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 7</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 8</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+
+            <div class="card-body">
+              <h5 class="mt-0">Recipe 9</h5>
+              <a href="#" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Recipe time</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+</div>
+
+
+{% endblock %}
