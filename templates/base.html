@@ -83,6 +83,8 @@
 
       <!---##############################################################################################################################-->
 
+      <form method="POST" action="{{ url_for('results_page') }}">
+
       <!--- Add ingredients modal -->
       <div class="modal fade" id="ingredientsModal" tabindex="-1" aria-labelledby="ingredientsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -123,7 +125,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
-              <button type="button" class="btn btn-primary"><a href="{{ url_for('results_page') }}" style="color:inherit;text-decoration: none">Find recipes</a></button>
+              <input type="submit" value="Find recipes" class="btn btn-primary">
             </div>
           </div>
         </div>
@@ -160,31 +162,31 @@
                       <p>Select any dietary requirements which you may require:</p>
 
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="DR_dairy">
+                        <input class="form-check-input" type="checkbox" id="DR_dairy" value="dairy-free" name="dietary_req">
                         <label class="form-check-label" for="DR_dairy">Dairy Free</label>
                       </div>
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="DR_egg">
+                        <input class="form-check-input" type="checkbox" id="DR_egg" value="egg-free" name="dietary_req">
                         <label class="form-check-label" for="DR_egg">Egg Free</label>
                       </div>
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="DR_GF">
+                        <input class="form-check-input" type="checkbox" id="DR_GF" value="gluten-free" name="dietary_req">
                         <label class="form-check-label" for="DR_GF">Gluten Free</label>
                       </div>
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="DR_nut">
+                        <input class="form-check-input" type="checkbox" id="DR_nut" value="peanut-free" name="dietary_req">
                         <label class="form-check-label" for="DR_nut">Nut free</label>
                       </div>
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="DR_halal">
+                        <input class="form-check-input" type="checkbox" id="DR_halal" value="pork-free" name="dietary_req">
                         <label class="form-check-label" for="DR_halal">Pork Free</label>
                       </div>
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="DR_vegan">
+                        <input class="form-check-input" type="checkbox" id="DR_vegan" value="vegan" name="dietary_req">
                         <label class="form-check-label" for="DR_vegan">Vegan</label>
                       </div>
                       <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="DR_vego">
+                        <input class="form-check-input" type="checkbox" id="DR_vego" value="vegetarian" name="dietary_req">
                         <label class="form-check-label" for="DR_vego">Vegetarian</label>
                       </div>
 
@@ -204,27 +206,27 @@
             
                     <p>Select any nutritional requirements which you may require:</p>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="nutrition1">
+                      <input class="form-check-input" type="checkbox" id="nutrition1" value="balanced" name="nut_req">
                       <label class="form-check-label" for="nutrition1">Balanced</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="nutrition2">
+                      <input class="form-check-input" type="checkbox" id="nutrition2" value="high-fiber" name="nut_req">
                       <label class="form-check-label" for="nutrition2">High-Fiber</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="nutrition3">
+                      <input class="form-check-input" type="checkbox" id="nutrition3" value="high-protein" name="nut_req">
                       <label class="form-check-label" for="nutrition3">High-Protein</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="nutrition4">
+                      <input class="form-check-input" type="checkbox" id="nutrition4" value="low-carb" name="nut_req">
                       <label class="form-check-label" for="nutrition4">Low-Carb</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="nutrition5">
+                      <input class="form-check-input" type="checkbox" id="nutrition5" value="low-fat" name="nut_req">
                       <label class="form-check-label" for="nutrition5">Low-Fat</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="nutrition6">
+                      <input class="form-check-input" type="checkbox" id="nutrition6" value="low-sodium" name="nut_req">
                       <label class="form-check-label" for="nutrition6">Low-Sodium</label>
                     </div>
 
@@ -246,73 +248,73 @@
                       <p>Select your preferred cuisine</p>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine1">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine1" value="American">
                         <label class="form-check-label" for="cuisine1">
                           American
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine2">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine2" value="British">
                         <label class="form-check-label" for="cuisine2">
                           British
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine3">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine3" value="Chinese">
                         <label class="form-check-label" for="cuisine3">
                           Chinese
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine4">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine4" value="French">
                         <label class="form-check-label" for="cuisine4">
                           French
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine5">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine5" value="Indian">
                         <label class="form-check-label" for="cuisine5">
                           Indian
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine6">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine6" value="Italian">
                         <label class="form-check-label" for="cuisine6">
                           Italian
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine7">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine7" value="Japanese">
                         <label class="form-check-label" for="cuisine7">
                           Japanese
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine8">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine8" value="Mediterranean">
                         <label class="form-check-label" for="cuisine8">
                           Mediterranean
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine9">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine9" value="Mexican">
                         <label class="form-check-label" for="cuisine9">
                           Mexican
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine10">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine10" value="Middle Eastern">
                         <label class="form-check-label" for="cuisine10">
                           Middle Eastern
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine11">
+                        <input class="form-check-input" type="radio" name="cuisine" id="cuisine11" value="South East Asian">
                         <label class="form-check-label" for="cuisine11">
                           South East Asian
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="cuisine" id="anycuisine" checked>
+                        <input class="form-check-input" type="radio" name="cuisine" id="anycuisine" value="All Cuisine" checked>
                         <label class="form-check-label" for="anycuisine">
                           All of the above
                         </label>
@@ -334,43 +336,43 @@
 
                       
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mealtype" id="alcohol">
+                        <input class="form-check-input" type="radio" name="mealtype" id="alcohol" value="Alcohol-cocktail">
                         <label class="form-check-label" for="alcohol">
                           Alcohol
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mealtype" id="drinks">
+                        <input class="form-check-input" type="radio" name="mealtype" id="drinks" value="Drinks">
                         <label class="form-check-label" for="drinks">
                           Other Drinks
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mealtype" id="dessert">
+                        <input class="form-check-input" type="radio" name="mealtype" id="dessert" value="Desserts">
                         <label class="form-check-label" for="dessert">
                           Dessert
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mealtype" id="main_course">
+                        <input class="form-check-input" type="radio" name="mealtype" id="main_course" value="Main course">
                         <label class="form-check-label" for="main_course">
                           Main Course
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mealtype" id="salad">
+                        <input class="form-check-input" type="radio" name="mealtype" id="salad" value="Salad">
                         <label class="form-check-label" for="salad">
                           Salad
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mealtype" id="starter">
+                        <input class="form-check-input" type="radio" name="mealtype" id="starter" value="Starter">
                         <label class="form-check-label" for="starter">
                           Starter
                         </label>
                       </div>
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="mealtype" id="any_dish_type" checked>
+                        <input class="form-check-input" type="radio" name="mealtype" id="any_dish_type" value="All Dish Types" checked>
                         <label class="form-check-label" for="any_dish_type">
                           Any
                         </label>
@@ -440,13 +442,13 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Add ingredients</button>
-              <button type="button" class="btn btn-primary"><a href="{{ url_for('results_page') }}" style="color:inherit;text-decoration: none">Find recipes</a></button>
+              <input type="submit" value="Find recipes" class="btn btn-primary">
             </div>
           </div>
         </div>
       </div>
 
-      
+      </form>
       <!---##############################################################################################################################-->
 
       <!-- sortbyModal -->
