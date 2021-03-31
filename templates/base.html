@@ -8,12 +8,18 @@
         <meta name="author" content="int elligence;">
         <title>{% block title %}{% endblock %}</title>
 
+        <!--- JQuery and Popper files -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+
+
         <!--- Bootstrap Core Files -->
         <link href="{{ url_for('static', filename='bootstrap.min.css')}}" rel="stylesheet">
         <script src="{{ url_for('static', filename='bootstrap.bundle.min.js')}}"></script>
 
         <!--- Modal CSS -->
         <link href="{{ url_for('static', filename='modal.css')}}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='time_range_slider.css')}}" rel="stylesheet">
 
         <style>
           .bd-placeholder-img {
@@ -110,12 +116,12 @@
                   <p>Your ingredients will be listed here:</p>
                   <div class="col-12">
                     <ul class="list-group list-group-flush" id="add_ingredients_list">
-                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Oil</li>
-                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Salt</li>
-                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Vinegar</li>
-                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Milk</li>
-                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Sugar</li>
-                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove">Flour</li>
+                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove"><input type="hidden", name="addIngred" value="oil">Oil</li>
+                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove"><input type="hidden", name="addIngred" value="salt">Salt</li>
+                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove"><input type="hidden", name="addIngred" value="vinegar">Vinegar</li>
+                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove"><input type="hidden", name="addIngred" value="milk">Milk</li>
+                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove"><input type="hidden", name="addIngred" value="sugar">Sugar</li>
+                      <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove"><input type="hidden", name="addIngred" value="flour">Flour</li>
                     </ul>
                   </div>
                 </div>
@@ -391,11 +397,30 @@
                   </h2>
                   <div id="filterCollapseFive" class="accordion-collapse collapse" aria-labelledby="filterFive" data-bs-parent="#filtersAccordian">
                     <div class="accordion-body">
-                      <p>Select the maximum preperation time:</p>
-                      <input type="range" class="form-range" name="range" step="5" min="0" max="300" value="0" onchange="timeRangeSlider.value=value">
-                      <input type="text" class="form-control" value="0" id="timeRangeSlider" style="width: auto;"></input>
-                      <br>
-                      <p><strong>Note:</strong> Time specified is in mins</p>
+                      <p>Drag the slider to select the time range you are willing to spend cooking:</p>
+
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div id="slider-range"></div>
+                          </div>
+                        </div>
+                        <div class="row slider-labels">
+                          <div class="col-xs-6 caption">
+                            <strong>Min:</strong> <span id="slider-range-value1"></span> mins
+                          </div>
+                          <div class="col-xs-6 text-right caption">
+                            <strong>Max:</strong> <span id="slider-range-value2"></span> mins
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div id="hidden-times" class="col-sm-12">
+                            <input id="min-time" type="hidden" name="min-time" value="0">
+                            <input id='max-time' type="hidden" name="max-time" value="600">
+                          </div>
+                        </div>
+                      </div>
+
 
                     </div>
                   </div>
@@ -507,12 +532,9 @@
 
       <!---##############################################################################################################################-->
 
-      <!--- JQuery and Popper files -->
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-
-      <!--- JS used for add ingredients search bar -->>
+      <!--- JS used for add ingredients search bar -->
       <script type="text/javascript" src="{{ url_for('static', filename='search.js')}}"></script>
+      <script type="text/javascript" src="{{ url_for('static', filename='time_range_slider.js')}}"></script>
 
     </body>
 </html>

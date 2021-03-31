@@ -13,6 +13,9 @@ def results_page():
         print(f"Nutritional Requirements: {request.form.getlist('nut_req')}")
         print(f"Cuisine: {request.form.get('cuisine')}")
         print(f"Dish type: {request.form.get('mealtype')}")
+        print(f"Time range from {request.form.get('min-time')} to {request.form.get('max-time')} mins")
+        print(f"Ingredients: {request.form.getlist('addIngred')}")
+        print(f"Negative Search Ingredients: {request.form.getlist('negSearch')}")
     return render_template('results_page.html')
 
 @app.route('/display')
