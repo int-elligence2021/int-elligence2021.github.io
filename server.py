@@ -23,4 +23,4 @@ def display_page():
     return render_template('display_page.html')
 
 if __name__ == "__main__":
-    app.run(debug=True) #TODO: remove debug=True before deployment
+    app.run(port=0) #TODO: remove debug=True before deployment

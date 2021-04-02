@@ -56,3 +56,9 @@ button_rem.addEventListener("click", function() {
 function remove_list_item(item) {
   item.parentNode.removeChild(item)
 }
+
+/* Clear List button in add ingredients */
+clearIngred.onclick = () => {
+  const ingList = document.getElementById('add_ingredients_list');
+  ingList.innerHTML = '';
+}
