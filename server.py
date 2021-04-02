@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-
+from test_api import call_api, handle_selections
 app = Flask(__name__)
 
 @app.route('/')
@@ -9,13 +9,27 @@ def index():
 @app.route('/results', methods=["POST", "GET"])
 def results_page():
     if request.method == "POST":
-        print(f"Dietary Requirements: {request.form.getlist('dietary_req')}")
-        print(f"Nutritional Requirements: {request.form.getlist('nut_req')}")
-        print(f"Cuisine: {request.form.get('cuisine')}")
-        print(f"Dish type: {request.form.get('mealtype')}")
-        print(f"Time range from {request.form.get('min-time')} to {request.form.get('max-time')} mins")
-        print(f"Ingredients: {request.form.getlist('addIngred')}")
-        print(f"Negative Search Ingredients: {request.form.getlist('negSearch')}")
+        health=request.form.getlist('dietary_req')
+        diet=request.form.getlist('nut_req')
+        cuisineType=request.form.get('cuisine')
+        if cuisineType=='All Cuisine':
+            cuisineType=[]
+        dishType=request.form.get('mealtype')
+        if dishType=='All Dish Types':
+            dishType=[]
+        time=f"{request.form.get('min-time')}-{request.form.get('max-time')}"
+        ingredients=request.form.getlist('addIngred')
+        excluded=request.form.getlist('negSearch')
+        
+        handle_selections({
+            'health': health,
+            'diet': diet,
+            'cuisineType': cuisineType,
+            'dishType': dishType,
+            'time': time,
+            'ingredients': ingredients,
+            'excluded': excluded
+        })
     return render_template('results_page.html')
 
 @app.route('/display')
