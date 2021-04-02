@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{super()}}
+<link href="{{ url_for('static', filename='display_page.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}HomeCooks · Display{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ingredientsModal">
+              Ingredients
+            </button>              
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#filtersModal">
+              Filters
+            </button>
+          </li>
+          <!-- Button trigger sortbyModal -->
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sortbyModal">
+              Sort By
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+  <!-- carbonara recipe ref: https://damndelicious.net/2014/03/29/spaghetti-carbonara/ -->
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <!-- TITLE -->
+      <a href="{{ url_for('results_page')}}" class="btn btn-outline-dark" role="button">Back</a>
+      <h1 class="recipe_name">Creamy Carbonara</h1>
+      <p class="image">
+        <img src="{{ url_for('static', filename='pasta.jpg')}}" alt="Pasta" style="width:100%;max-width:600px">
+      </p>
+
+      <div class="row">
+        <div class="col-md-3">
+          <!-- INGREDIENTS -->
+          <h3 class="ingredients">Ingredients:</h3>
+          <input type="checkbox" id="ing1">
+          <label for="ing1"> 8 ounces of spaghetti</label><br>
+          <input type="checkbox" id="ing2">
+          <label for="ing2"> 2 large eggs</label><br>
+          <input type="checkbox" id="ing3">
+          <label for="ing3"> 1/2 cup freshly grated Parmesan</label><br>
+          <input type="checkbox" id="ing4">
+          <label for="ing4"> 4 slices bacon, dices</label><br>
+          <input type="checkbox" id="ing5">
+          <label for="ing5"> 4 cloves garlic, minced</label><br>
+          <input type="checkbox" id="ing6">
+          <label for="ing6"> salt and pepper</label><br>
+          <input type="checkbox" id="ing7">
+          <label for="ing7"> (optional) parsley</label><br>
+
+        </div>
+
+
+        <div class="col-md-9">
+
+          <!-- ALLERGENS -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="li">Allergens: <span class="emphasis">egg, wheat and gluten</span></div>
+              <div class="li">Serving Size: 4 </div>
+            </div>
+            <div class="col-md-5">
+              <div class="li">Prep time: 0:05</div>
+              <div class="li">Cooking time: 0:10</div>
+            </div>
+          </div>
+          
+          <!-- HOW TO MAKE -->
+          <h3 class="procedure">How to make:</h3>
+          <div class="li">
+            1. In a large pot of boiling salted water, cook pasta according to package instructions; reserve 1/2 cup water and drain well. 
+          </div>
+          <div class="li">
+            2. In a small bowl, whisk together eggs; set aside. 
+          </div>
+          <div class="li">
+            3. Heat a large skillet over medium high heat. Add bacon and cook until brown and crispy, about 6-8 minutes; reserve excess fat.
+          </div>
+          <div class="li">
+            4. Stir in garlic until fragrant, about 1 minute. Reduce heat to low.
+          </div>
+          <div class="li">
+            5. Working quickly, stir in pasta and egg mixture, and gently toss to combine; 
+            season with salt and pepper, to taste. Add reserved pasta water, one tablespoon at a time, until desired consistency is reached.
+          </div>
+          <div class="li">
+            6. Serve immediately, garnished with parsley, if desired.
+          </div>
+          <!-- NUTRITIONAL FACTS -->
+          <h3 class="procedure">Nutritional Facts</h3>
+          <p class="emphasis">Calories per serving: 374.5</p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>Total Fat</td>
+                <td>14.8g</td>
+              </tr>
+              <tr>
+                <td>Cholesterol</td>
+                <td>108.2mg</td>
+              </tr>
+              <tr>
+                <td>Sodium</td>
+                <td>250.5mg</td>
+              </tr>
+              <tr>
+                <td>Total Carbohydrates</td>
+                <td>44.3g</td>
+              </tr>
+              <tr>
+                <td>Protein</td>
+                <td>15.3g</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+
+
+    <div>
+
+
+    </div>
+  </div>
+</div>
+  
+  </main>
+  </div>
+  </div>
+
+
+
+{% endblock %}
