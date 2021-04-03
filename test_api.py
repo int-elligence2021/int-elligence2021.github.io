@@ -34,13 +34,23 @@ def call_api(query):
 		d=json.loads(resp.text)
 
 		if not d['hits']:
-			return "ingredients"
+			# no hits means no recipes
+			return {'error': "ingredients"}
 
+		recipe_dict = {
+			'error': None,
+			'recipes': []
+		}
 		for recipe in d['hits']:
+			# add recipe to dict
+			recipe_dict['recipes'].append(recipe['recipe']['label']) # have only added recipe name as of now
+
 			print(recipe['recipe']['label'])
 			for ingr in recipe['recipe']['ingredients']:
 				print(f"\t{ingr['text']}")
 			print('\n')
 
-		return None
-	return "filters"
+		return recipe_dict
+	
+	# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
+	return {'error': "filters"}

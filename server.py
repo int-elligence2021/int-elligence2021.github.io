@@ -38,7 +38,7 @@ def results_page():
         excluded=request.form.getlist('negSearch')
         excluded=','.join(excluded)
         
-        error_type = handle_selections({
+        recipe_list = handle_selections({
             'health': health,
             'diet': diet,
             'cuisineType': cuisineType,
@@ -48,12 +48,14 @@ def results_page():
             'excluded': excluded
         })
         
-        if error_type is not None:
+        if recipe_list['error'] is not None:
             # errors exist in either ingredients selection or filters selection
-            session['error'] = error_type
+            session['error'] = recipe_list['error']
             return redirect(url_for('index')) # redirects to index
 
-    return render_template('results_page.html')
+    # THIS THROWS AN ERROR IF /RESULTS IS A GET REQUEST (i.e when pressed 'back' from display)
+    # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
+    return render_template('results_page.html', recipes=recipe_list['recipes'])
 
 @app.route('/display')
 def display_page():
