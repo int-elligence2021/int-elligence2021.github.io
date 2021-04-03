@@ -1,10 +1,23 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from test_api import call_api, handle_selections
+
 app = Flask(__name__)
+app.secret_key = "int-elligence"
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ingred_error = False
+    filters_error = False
+    if 'error' in session:
+        if session['error'] == 'ingredients':
+            ingred_error = True
+        else:
+            filters_error = True
+        session.pop('error', None)
+    
+    # errors result from ingredients or filters not returning any results.
+    # If the results route was redirected to the index, then set conditions to display the correct error
+    return render_template('index.html', ingred_error=ingred_error, filters_error=filters_error)
 
 @app.route('/results', methods=["POST", "GET"])
 def results_page():
@@ -25,7 +38,7 @@ def results_page():
         excluded=request.form.getlist('negSearch')
         excluded=','.join(excluded)
         
-        valid = handle_selections({
+        error_type = handle_selections({
             'health': health,
             'diet': diet,
             'cuisineType': cuisineType,
@@ -35,10 +48,10 @@ def results_page():
             'excluded': excluded
         })
         
-        if not valid:
-            # go back to index
-            # display some kind of error message on webpage (maybe activate a warning modal through a javascript getElementById )
-            return redirect(url_for('index'))
+        if error_type is not None:
+            # errors exist in either ingredients selection or filters selection
+            session['error'] = error_type
+            return redirect(url_for('index')) # redirects to index
 
     return render_template('results_page.html')
 

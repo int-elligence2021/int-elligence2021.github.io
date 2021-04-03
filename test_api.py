@@ -33,10 +33,14 @@ def call_api(query):
 	if resp.status_code == 200:
 		d=json.loads(resp.text)
 
+		if not d['hits']:
+			return "ingredients"
+
 		for recipe in d['hits']:
 			print(recipe['recipe']['label'])
 			for ingr in recipe['recipe']['ingredients']:
 				print(f"\t{ingr['text']}")
 			print('\n')
 
-	return resp.status_code == 200
+		return None
+	return "filters"
