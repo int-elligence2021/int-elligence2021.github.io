@@ -33,6 +33,7 @@ def results_page():
         
         time=f"{request.form.get('min-time')}-{request.form.get('max-time')}"
         ingredients=request.form.getlist('addIngred')
+        num_ingr=len(ingredients)
         ingredients=','.join(ingredients)
 
         excluded=request.form.getlist('negSearch')
@@ -45,6 +46,7 @@ def results_page():
             'dishType': dishType,
             'time': time,
             'ingredients': ingredients,
+            'num_ingr': num_ingr,
             'excluded': excluded
         })
         

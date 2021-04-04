@@ -5,7 +5,7 @@ def handle_selections(req):
 	app_key='faa479368d9dd0d427347cfb1a32f2aa'
 	app_id='ed9ebd49'
 
-	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}"
+	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=50"
 	
 	if req['diet'] != '':
 		query=f"{query}&diet={req['diet']}"
@@ -24,9 +24,9 @@ def handle_selections(req):
 	if req['excluded'] != '':
 		query=f"{query}&excluded={req['excluded']}"
 
-	return call_api(query)
+	return call_api(query, req['num_ingr'])
 
-def call_api(query):
+def call_api(query, num_ingr):
 	url='https://api.edamam.com/search?'
 	resp = requests.get(url + query)
 	print(url+query)
@@ -42,8 +42,9 @@ def call_api(query):
 			'recipes': []
 		}
 		for recipe in d['hits']:
+			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
 			# add recipe to dict
-			recipe_dict['recipes'].append(recipe['recipe']['label']) # have only added recipe name as of now
+			recipe_dict['recipes'].append(recipe['recipe'])
 
 			print(recipe['recipe']['label'])
 			for ingr in recipe['recipe']['ingredients']:
