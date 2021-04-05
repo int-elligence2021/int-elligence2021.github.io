@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from test_api import call_api, handle_selections
+from test_api import call_api, handle_selections, display_recipe
 
 app = Flask(__name__)
 app.secret_key = "int-elligence"
+
 
 @app.route('/')
 def index():
@@ -59,9 +60,12 @@ def results_page():
     # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
     return render_template('results_page.html', recipes=recipe_list['recipes'])
 
-@app.route('/display')
+
+@app.route('/display_page')
 def display_page():
-    return render_template('display_page.html')
+    recipe_name = request.args.get('recipe_name')
+    recipe_info = display_recipe(recipe_name)
+    return render_template('display_page.html', recipes=recipe_info)
 
 if __name__ == "__main__":
     app.run(debug=True) #TODO: remove debug=True before deployment
