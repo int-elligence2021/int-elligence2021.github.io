@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}HomeCooks · Recipes{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ingredientsModal">
+              Ingredients
+            </button>              
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#filtersModal">
+              Filters
+            </button>
+          </li>
+          <!-- Button trigger sortbyModal -->
+          <li class="nav-item">
+            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sortbyModal">
+              Sort By
+            </button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+<!-- main -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+<div class="container"
+  data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
+  <section class="py-4 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Recipes Found</h1>
+        <h5 class="fw-light">You have all the ingredients!</h5>
+      </div>
+    </div>
+  </section>
+
+  <!-- album template - recipes -->
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <!--TODO: remove Carbonara after demo -->
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="{{ url_for('static', filename='pasta.jpg')}}" alt="Pasta" style="width:100%;max-width:600px;height:225px">
+
+            <div class="card-body">
+              <h5 class="mt-0">Creamy Carbonara</h5>
+              <a href="{{ url_for('display_page')}}" class="stretched-link" data-toggle="tooltip" title="Click for more information"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Missing ingredients: 0</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!---Loop and insert all recipes-->
+        {% for r in recipes %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src={{r.image}} alt={{r.label}} style="width:100%;max-width:600px;height:225px">
+
+            <div class="card-body">
+              <h5 class="mt-0">{{r.label}}</h5>
+              <a href="#" class="stretched-link" data-toggle="tooltip" title="Click for more information"></a>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Missing ingredients: {{r.num_missing}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+        <!--- Possible Idea (will need to send some data to /results)
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <button class="btn btn-default">Load More</button>
+        </div>
+        -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+</div>
+
+
+{% endblock %}
