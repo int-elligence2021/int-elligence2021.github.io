@@ -39,6 +39,8 @@ def results_page():
 
         excluded=request.form.getlist('negSearch')
         excluded=','.join(excluded)
+
+        sortby=request.form.get('sortby') #TODO: pass this into python function
         
         recipe_list = handle_selections({
             'health': health,
@@ -56,9 +58,12 @@ def results_page():
             session['error'] = recipe_list['error']
             return redirect(url_for('index')) # redirects to index
 
-    # THIS THROWS AN ERROR IF /RESULTS IS A GET REQUEST (i.e when pressed 'back' from display)
-    # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
-    return render_template('results_page.html', recipes=recipe_list['recipes'])
+        # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
+        return render_template('results_page.html', recipes=recipe_list['recipes'])
+
+    # else GET
+    # for now, recipes is empty unlike the POST method so the recipe page will be empty (apart from the Carbonara)
+    return render_template('results_page.html', recipes={}) 
 
 
 @app.route('/display_page')

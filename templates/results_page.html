@@ -25,9 +25,6 @@
               Sort By
             </button>
           </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-link">Include Extra Recipes</button>
-          </li>
         </ul>
       </div>
     </nav>
@@ -51,25 +48,11 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="{{ url_for('static', filename='pasta.jpg')}}" alt="Pasta" style="width:100%;max-width:600px;height:225px">
-
-            <div class="card-body">
-              <h5 class="mt-0">Creamy Carbonara</h5>
-              <a href="#" class="stretched-link"></a>
-              <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">Cooking time: 10 min</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!---Loop and insert all recipes-->
         {% for r in recipes %}
         <div class="col">
           <div class="card shadow-sm">
-            <img src={{r.image}} alt={{r.label}} style="width:100%;max-width:600px;height:225px">
+            <img src={{r.image}} alt={{r.label}} style="width:100%">
 
             <div class="card-body">
               <h5 class="mt-0">{{r.label}}</h5>
@@ -82,6 +65,11 @@
         </div>
         {% endfor %}
 
+        <!--- Possible Idea (will need to send some data to /results)
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <button class="btn btn-default">Load More</button>
+        </div>
+        -->
 
       </div>
     </div>
