@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from test_api import call_api, handle_selections
+from test_api import call_api, handle_selections, sort_by
 
 app = Flask(__name__)
 app.secret_key = "int-elligence"
@@ -38,8 +38,6 @@ def results_page():
 
         excluded=request.form.getlist('negSearch')
         excluded=','.join(excluded)
-
-        sortby=request.form.get('sortby') #TODO: pass this into python function
         
         recipe_list = handle_selections({
             'health': health,
@@ -57,8 +55,9 @@ def results_page():
             session['error'] = recipe_list['error']
             return redirect(url_for('index')) # redirects to index
 
+        sorted_list=sort_by(recipe_list['recipes'], request.form.get('sortby'))
         # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
-        return render_template('results_page.html', recipes=recipe_list['recipes'])
+        return render_template('results_page.html', recipes=sorted_list)
 
     # else GET
     # for now, recipes is empty unlike the POST method so the recipe page will be empty (apart from the Carbonara)

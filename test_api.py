@@ -46,12 +46,23 @@ def call_api(query, num_ingr):
 			# add recipe to dict
 			recipe_dict['recipes'].append(recipe['recipe'])
 
-			print(recipe['recipe']['label'])
-			for ingr in recipe['recipe']['ingredients']:
-				print(f"\t{ingr['text']}")
-			print('\n')
+			#print(recipe['recipe']['label'])
+			#for ingr in recipe['recipe']['ingredients']:
+			#	print(f"\t{ingr['text']}")
+			#print('\n')
 
 		return recipe_dict
 	
 	# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
 	return {'error': "filters"}
+
+def sort_by(recipes, sort_option):
+	if sort_option == ['missing']:
+		def sort_key(r):
+			return r['num_missing']
+		return sorted(recipes, key=sort_key)
+	if sort_option == ['alpha']:
+		def sort_key(r):
+			return r['label']
+		return sorted(recipes, key=sort_key)
+
