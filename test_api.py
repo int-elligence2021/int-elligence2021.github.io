@@ -57,12 +57,13 @@ def call_api(query, num_ingr):
 	return {'error': "filters"}
 
 def sort_by(recipes, sort_option):
-	if sort_option == ['missing']:
-		def sort_key(r):
+	def sort_missing(r):
 			return r['num_missing']
-		return sorted(recipes, key=sort_key)
-	if sort_option == ['alpha']:
-		def sort_key(r):
+	def sort_alpha(r):
 			return r['label']
-		return sorted(recipes, key=sort_key)
-
+	if sort_option == 'missing':
+		return sorted(recipes, key=sort_missing)
+	if sort_option == 'alpha':
+		return sorted(recipes, key=sort_alpha)
+	else:
+		return recipes
