@@ -38,7 +38,6 @@ def results_page():
 
         excluded=request.form.getlist('negSearch')
         excluded=','.join(excluded)
-        
         recipe_list = handle_selections({
             'health': health,
             'diet': diet,
