@@ -22,11 +22,9 @@ def index():
 @app.route('/results', methods=["POST", "GET"])
 def results_page():
     if request.method == "POST":
-        health=request.form.getlist('dietary_req')
-        health=','.join(health)
 
+        health=request.form.getlist('dietary_req')
         diet=request.form.getlist('nut_req')
-        diet=','.join(diet)
 
         cuisineType=request.form.get('cuisine')
         dishType=request.form.get('mealtype')
@@ -34,22 +32,31 @@ def results_page():
         time=f"{request.form.get('min-time')}-{request.form.get('max-time')}"
         ingredients=request.form.getlist('addIngred')
         num_ingr=len(ingredients)
-        ingredients=','.join(ingredients)
-
         excluded=request.form.getlist('negSearch')
-        excluded=','.join(excluded)
 
-        sortby=request.form.get('sortby') #TODO: pass this into python function
-        
-        recipe_list = handle_selections({
+        sortby=request.form.get('sortby')
+
+        form_data = {
             'health': health,
             'diet': diet,
             'cuisineType': cuisineType,
             'dishType': dishType,
-            'time': time,
+            'min_time': request.form.get('min-time'),
+            'max_time': request.form.get('max-time'),
             'ingredients': ingredients,
+            'excluded': excluded 
+        }
+
+        
+        recipe_list = handle_selections({
+            'health': ','.join(health),
+            'diet': ','.join(diet),
+            'cuisineType': cuisineType,
+            'dishType': dishType,
+            'time': time,
+            'ingredients': ','.join(ingredients),
             'num_ingr': num_ingr,
-            'excluded': excluded
+            'excluded': ','.join(excluded)
         })
         
         if recipe_list['error'] is not None:
@@ -58,7 +65,7 @@ def results_page():
             return redirect(url_for('index')) # redirects to index
 
         # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
-        return render_template('results_page.html', recipes=recipe_list['recipes'])
+        return render_template('results_page.html', recipes=recipe_list['recipes'], form_data=form_data)
 
     # else GET
     # for now, recipes is empty unlike the POST method so the recipe page will be empty (apart from the Carbonara)

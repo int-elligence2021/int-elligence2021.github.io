@@ -121,6 +121,7 @@
                       <li class="list-group-item" onclick="remove_list_item(this)" data-toggle="tooltip" data-placement="top" title="Click to remove"><input type="hidden" name="addIngred" value="sugar">Sugar</li>
                     </ul>
                   </div>
+
                   <p></p>
                   <div class="col-md-12">
                     <button class="btn btn-danger" id="clearIngred" type="button">
@@ -541,7 +542,6 @@
       </form>
       <!---##############################################################################################################################-->
 
-      
       <footer class="text-muted py-5">
         <div class="container">
           <p class="float-end mb-1">
@@ -549,6 +549,33 @@
           </p>
         </div>
       </footer>
+
+
+      {% if form_data %}
+        <script>
+          var ingredList = document.getElementById('add_ingredients_list')
+          ingredList.innerHTML = '';
+        </script>
+        {% for i in form_data.ingredients %}
+          <script>
+            var new_li = document.createElement("li");
+            var new_input = document.createElement("input");
+
+            new_li.className = 'list-group-item';
+            new_li.textContent = '{{i}}';
+            new_li.setAttribute('onclick','remove_list_item(this)');
+            new_li.setAttribute('data-toggle','tooltip');
+            new_li.setAttribute('data-placement','top');
+            new_li.title = 'Click to remove';
+            new_input.type = 'hidden';
+            new_input.name = 'negSearch';
+            new_input.value = '{{i}}';
+
+            new_li.appendChild(new_input);
+            ingredList.appendChild(new_li);
+          </script>
+        {% endfor %}
+      {% endif %}
 
 
       <!---##############################################################################################################################-->
