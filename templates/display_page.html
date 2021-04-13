@@ -36,7 +36,6 @@
 
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-  <!-- carbonara recipe ref: https://damndelicious.net/2014/03/29/spaghetti-carbonara/ -->
   <div class="album py-5 bg-light">
     <div class="container">
       <!-- TITLE -->
@@ -50,10 +49,9 @@
         <div class="col-md-3">
           <!-- INGREDIENTS -->
           <h3 class="ingredients">Ingredients:</h3>
-          <input type="checkbox" id="ing1">
           {% for i in recipes.ingredients %} 
+            <input type="checkbox" id="ing1">
             <label for="ing1"> {{ i.text }} </label><br>
-            <input type="checkbox" id="ing2">
           {% endfor %}
         </div>
 
@@ -67,17 +65,19 @@
 
           <!-- HOW TO MAKE -->
           <h3 class="procedure">Procdedue</h3>
-          
+          <p>To know how to cook this recipe click <a href={{ recipes.url }}>here!</a> </p>
+  
           <!-- NUTRITIONAL FACTS -->
           <h3 class="procedure">Nutritional Facts</h3>
           <p class="emphasis">Calories per serving: {{ recipes.calories }}</p>
+          <!-- <p class="emphasis">{{ recipes.nutrient }}</p> -->
           <table class="table">
             <tbody>
-              {% for h in recipes.totalNutrients %} 
+              {% for nutrients in recipes.nutrient %} 
                 <tr>
-                  <td>{{ h.label }}</td>
-                  <td>{{ h.unit }}</td>
-                </tr>
+                  <td>{{ nutrients.label }}</td>
+                  <td>{{ nutrients.quantity }}</td>
+                </tr> 
               {% endfor %}
             </tbody>
           </table>

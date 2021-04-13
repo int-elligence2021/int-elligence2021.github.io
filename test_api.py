@@ -34,7 +34,7 @@ def handle_selections(req):
 
 def call_api(query, num_ingr):
 	resp = requests.get(url + query)
-	print(url+query)
+	# print(url+query)
 	if resp.status_code == 200:
 		d=json.loads(resp.text)
 
@@ -58,11 +58,21 @@ def call_api(query, num_ingr):
 def display_recipe(label):
 	for recipe in recipe_dict['recipes']:
 		if recipe['label'] == label:
-			print(label)
+			nutrient = []
+			for nutrients in recipe['totalNutrients']:
+				sample = {}
+				x = str(round(recipe['totalNutrients'][nutrients]['quantity'], 2)) + ' ' + recipe['totalNutrients'][nutrients]['unit']
+				sample = {
+					'label': recipe['totalNutrients'][nutrients]['label'],
+					'quantity': x
+				}
+				nutrient.append(sample)
+			recipe["nutrient"] = nutrient
+			recipe["calories"] = round(recipe['calories'], 2)
 			return recipe
 	return {}
 
-# print("Hello!")
+# FOR TESTING PURPOSES
 # recipe_list = handle_selections({
 # 	'health': '',
 # 	'diet': '',
@@ -73,6 +83,3 @@ def display_recipe(label):
 # 	'num_ingr': 2,
 # 	'excluded': ''
 # })
-
-# res = display_recipe("Italian Chicken Pasta Salad")
-# print(res)
