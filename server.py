@@ -36,18 +36,6 @@ def results_page():
 
         sortby=request.form.get('sortby')
 
-        form_data = {
-            'health': health,
-            'diet': diet,
-            'cuisineType': cuisineType,
-            'dishType': dishType,
-            'min_time': request.form.get('min-time'),
-            'max_time': request.form.get('max-time'),
-            'ingredients': ingredients,
-            'excluded': excluded 
-        }
-
-        
         recipe_list = handle_selections({
             'health': ','.join(health),
             'diet': ','.join(diet),
@@ -65,7 +53,7 @@ def results_page():
             return redirect(url_for('index')) # redirects to index
 
         # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
-        return render_template('results_page.html', recipes=recipe_list['recipes'], form_data=form_data)
+        return render_template('results_page.html', recipes=recipe_list['recipes'], form_data=formRequest(request.form))
 
     # else GET
     # for now, recipes is empty unlike the POST method so the recipe page will be empty (apart from the Carbonara)
@@ -73,7 +61,22 @@ def results_page():
 
 @app.route('/display')
 def display_page():
-    return render_template('display_page.html')
+    return render_template('display_page.html', form_data=formRequest(request.form))
+
+
+# saves the user data input into the forms and copies the data onto the next page
+# so that inputs don't need to be entered again if modifications are to be made
+def formRequest(form):
+    return {
+        'diet_req': form.getlist('dietary_req'),
+        'nut_req': form.getlist('nut_req'),
+        'cuisineType': form.get('cuisine'),
+        'dishType': form.get('mealtype'),
+        'ingredients': form.getlist('addIngred'),
+        'excluded': form.getlist('negSearch'),
+        'sort': form.get('sortby')
+    }
+
 
 if __name__ == "__main__":
-    app.run(debug=True) #TODO: remove debug=True before deployment
+    app.run(port=0)
