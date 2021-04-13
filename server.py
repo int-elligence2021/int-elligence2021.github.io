@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from test_api import call_api, handle_selections, display_recipe
 
+# saves recipe list and form inputs after every POST method
+data = {}
+
 app = Flask(__name__)
 app.secret_key = "int-elligence"
 
@@ -19,6 +22,7 @@ def index():
     # errors result from ingredients or filters not returning any results.
     # If the results route was redirected to the index, then set conditions to display the correct error
     return render_template('index.html', ingred_error=ingred_error, filters_error=filters_error)
+
 
 @app.route('/results', methods=["POST", "GET"])
 def results_page():
@@ -53,12 +57,16 @@ def results_page():
             session['error'] = recipe_list['error']
             return redirect(url_for('index')) # redirects to index
 
-        # a possible solution is to store the recipe details in a global variable (possibly in a JSON file)
+        # save recipe and form data so it is saved until the next successful POST method
+        data['recipes'] = recipe_list['recipes']
+        data['form_data'] = formRequest(request.form)
+
         return render_template('results_page.html', recipes=recipe_list['recipes'], form_data=formRequest(request.form))
 
-    # else GET
-    # for now, recipes is empty unlike the POST method so the recipe page will be empty (apart from the Carbonara)
-    return render_template('results_page.html', recipes={}) 
+    # else request.method == GET
+    # (clicked back button from display page)
+    return render_template('results_page.html', recipes=data['recipes'], form_data=data['form_data']) 
+
 
 
 @app.route('/display_page')
