@@ -81,6 +81,13 @@
         </div>
       </header>
 
+      <!--- Display a javascript error if there were any errors in searching for recipes -->
+      {% if ingred_error %}
+      <script>alert("There are no results for your chosen ingredients.")</script>
+      {% elif filters_error %}
+      <script>alert("Your chosen filters do not match with any results.")</script>
+      {% endif %}
+
         
       {% block content %}
       <!--- File exclusive content -->
