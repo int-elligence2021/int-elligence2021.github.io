@@ -7,21 +7,16 @@ data = {}
 app = Flask(__name__)
 app.secret_key = "int-elligence"
 
-
+# INDEX DOES NOT SAVE USER SELECTION DATA
 @app.route('/')
 def index():
-    ingred_error = False
-    filters_error = False
-    if 'error' in session:
-        if session['error'] == 'ingredients':
-            ingred_error = True
-        else:
-            filters_error = True
-        session.pop('error', None)
-    
-    # errors result from ingredients or filters not returning any results.
-    # If the results route was redirected to the index, then set conditions to display the correct error
-    return render_template('index.html', ingred_error=ingred_error, filters_error=filters_error)
+    # Temporarily added to avoid errors when clicked on a 'trending recipe'
+    data['form_data'] = formRequest(request.form)
+    data['recipes'] = {}
+
+    session['url'] = url_for('index') # stores url of current page so it can be redirected to in the case of ingredient/filter errors
+    e = errorCheck()    
+    return render_template('index.html', ingred_error=e['i'], filters_error=e['f'])
 
 
 @app.route('/results', methods=["POST", "GET"])
@@ -55,22 +50,28 @@ def results_page():
         if recipe_list['error'] is not None:
             # errors exist in either ingredients selection or filters selection
             session['error'] = recipe_list['error']
-            return redirect(url_for('index')) # redirects to index
+            return redirect(session['url']) # redirects to previous page
 
         # save recipe and form data so it is saved until the next successful POST method
         data['recipes'] = recipe_list['recipes']
         data['form_data'] = formRequest(request.form)
 
-        return render_template('results_page.html', recipes=recipe_list['recipes'], form_data=formRequest(request.form))
+        session['url'] = url_for('results_page')
+        e = errorCheck() 
+        return render_template('results_page.html', recipes=recipe_list['recipes'], form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'])
 
     # else request.method == GET
     # (clicked back button from display page)
-    return render_template('results_page.html', recipes=data['recipes'], form_data=data['form_data']) 
+    session['url'] = url_for('results_page')
+    e = errorCheck()
+    return render_template('results_page.html', recipes=data['recipes'], form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f']) 
 
 
 @app.route('/display')
 def display_page():
-    return render_template('display_page.html', form_data=formRequest(request.form))
+    session['url'] = url_for('display_page')
+    e = errorCheck()
+    return render_template('display_page.html', form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f'])
 
 
 # saves the user data input into the forms and copies the data onto the next page
@@ -85,6 +86,21 @@ def formRequest(form):
         'excluded': form.getlist('negSearch'),
         'sort': form.get('sortby')
     }
+
+
+# if any errors occur when looking for recipes in the API, they are stored in the session
+# errorCheck returns the status of errors in the file in a dictionary
+def errorCheck():
+    ingred_error = False
+    filters_error = False
+    if 'error' in session:
+        if session['error'] == 'ingredients':
+            ingred_error = True
+        else:
+            filters_error = True
+        session.pop('error', None)
+
+    return {'i': ingred_error, 'f': filters_error}
 
 
 if __name__ == "__main__":
