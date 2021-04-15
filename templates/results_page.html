@@ -4,30 +4,24 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ingredientsModal">
-              Ingredients
-            </button>              
+            <button type="button" class="btn btn-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Change Ingredients</button>           
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#filtersModal">
-              Filters
-            </button>
-          </li>
+            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Change filters</button>
+          </li> -->
           <!-- Button trigger sortbyModal -->
-          <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sortbyModal">
-              Sort By
-            </button>
+          <!-- <li class="nav-item">
+            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort by</button>
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> -->
 
 <!-- main -->
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -42,7 +36,11 @@
       </div>
     </div>
   </section>
-
+    <!-- TODO: put centre align ingredients button, left align sort button -->
+  <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Refine Search</button>
+  <button type="button" class="btn btn-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Change Ingredients</button>
+  <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort by</button>
+<!-- TODO: move container to the left -->
   <!-- album template - recipes -->
   <div class="album py-5 bg-light">
     <div class="container">
