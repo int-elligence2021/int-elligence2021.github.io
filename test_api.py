@@ -1,5 +1,6 @@
 import json
 import requests
+import pprint
 
 recipe_dict = {
 	'error': None,
@@ -46,6 +47,7 @@ def call_api(query, num_ingr):
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
 			# add recipe to dict
 			recipe_dict['recipes'].append(recipe['recipe'])
+
 		return recipe_dict
 	
 	# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
@@ -82,3 +84,29 @@ def display_recipe(id):
 # 	'num_ingr': 2,
 # 	'excluded': ''
 # })
+
+def sort_by(recipes, sort_option):
+	def sort_missing(r):
+			return r['num_missing']
+	def sort_alpha(r):
+			return r['label']
+	def sort_time_ascending(r):
+			return r['totalTime']
+	def sort_time_descending(r):
+			return r['totalTime']
+	def sort_calories(r):
+			return r['calories']
+		
+	if sort_option == 'missing':
+		return sorted(recipes, key=sort_missing)
+	elif sort_option == 'alpha':
+		return sorted(recipes, key=sort_alpha)
+	elif sort_option == 'ascending':
+		return sorted(recipes, key=sort_time_ascending)
+	elif sort_option == 'descending':
+		return sorted(recipes, key=sort_time_descending, reverse=True)
+	elif sort_option == 'calories':
+		return sorted(recipes, key=sort_calories)
+	else:
+		return recipes
+

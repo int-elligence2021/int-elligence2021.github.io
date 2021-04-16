@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+<<<<<<< HEAD
 from test_api import call_api, handle_selections, display_recipe
 import requests
 
 # saves recipe list and form inputs after every POST method
 data = {}
+=======
+from test_api import call_api, handle_selections, sort_by
+>>>>>>> main
 
 # saves recipe list and form inputs after every POST method
 data = {}
@@ -38,8 +42,6 @@ def results_page():
         num_ingr=len(ingredients)
         excluded=request.form.getlist('negSearch')
 
-        sortby=request.form.get('sortby')
-
         recipe_list = handle_selections({
             'health': ','.join(health),
             'diet': ','.join(diet),
@@ -56,13 +58,19 @@ def results_page():
             session['error'] = recipe_list['error']
             return redirect(session['url']) # redirects to previous page
 
+
+        sorted_list=sort_by(recipe_list['recipes'], request.form.get('sortby'))
+
+        for r in sorted_list:
+            print(r['totalTime'])
+
         # save recipe and form data so it is saved until the next successful POST method
-        data['recipes'] = recipe_list['recipes']
+        data['recipes'] = sorted_list
         data['form_data'] = formRequest(request.form)
 
         session['url'] = url_for('results_page')
         e = errorCheck() 
-        return render_template('results_page.html', recipes=recipe_list['recipes'], form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'])
+        return render_template('results_page.html', recipes=sorted_list, form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'])
 
     # else request.method == GET
     # (clicked back button from display page)
@@ -72,7 +80,11 @@ def results_page():
 
 
 
+<<<<<<< HEAD
 @app.route('/display_page')
+=======
+@app.route('/display')
+>>>>>>> main
 def display_page():
     recipe_id = request.args.get('recipe_id')
     recipe_info = display_recipe(recipe_id)
