@@ -502,7 +502,7 @@
             <div class="modal-body">
               
               <div class="form-check">
-                <input class="form-check-input" type="radio" id="alpha" name="sortby" value="alpha" checked>
+                <input class="form-check-input" type="radio" id="alpha" name="sortby" value="alpha">
                 <label class="form-check-label" for="alpha">Alphabetical order</label>
               </div>
 
@@ -528,7 +528,7 @@
               </div>
 
               <div class="form-check">
-                <input class="form-check-input" type="radio" id="missing" name="sortby" value="missing">
+                <input class="form-check-input" type="radio" id="missing" name="sortby" value="missing" checked>
                 <label class="form-check-label" for="missing">
                   Least number of missing ingredients
                 </label>
@@ -601,7 +601,7 @@
         <script>
           document.getElementById('{{form_data.cuisineType}}').checked = true;
           document.getElementById('{{form_data.dishType}}').checked = true;
-          document.getElementById('alpha').checked = false;
+          document.getElementById('missing').checked = false;
           document.getElementById('{{form_data.sort}}').checked = true;
           /* changing time slider might be difficult */
         </script>
