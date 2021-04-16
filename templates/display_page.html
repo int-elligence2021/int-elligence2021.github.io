@@ -9,82 +9,103 @@
 
 {% block content %}
 
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ingredientsModal">
-              Ingredients
-            </button>              
-          </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#filtersModal">
-              Filters
-            </button>
-          </li>
-          <!-- Button trigger sortbyModal -->
-          <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sortbyModal">
-              Sort By
-            </button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
+<main>
   <div class="album py-5 bg-light">
     <div class="container">
       <!-- TITLE -->
       <a href="{{ url_for('results_page')}}" class="btn btn-outline-dark" role="button">Back</a>
       <h1 class="recipe_name">{{ recipes.label }}</h1>
+      <br>
       <p class="image">
-        <img src="{{ recipes.image }}" alt="Pasta" style="width:100%;max-width:600px">
+        <img src="{{ recipes.image }}" alt="recipe_image" style="width:100%;max-width:600px">
       </p>
+      <br><br>
 
       <div class="row">
-        <div class="col-md-3">
-          <!-- INGREDIENTS -->
-          <h3 class="ingredients">Ingredients:</h3>
-          {% for i in recipes.ingredients %} 
-            <input type="checkbox" id="ing1">
-            <label for="ing1"> {{ i.text }} </label><br>
-          {% endfor %}
-        </div>
-
-        <div class="col-md-9">
+        <div class="col-2"></div>
+        <div class="col">
 
           <!-- ALLERGENS -->
-          <div class="row">
-            <div class="li">Allergens: <span class="emphasis">{{ recipes.healthLabels }}</span>
+          <h3 class="allergens">Allergens</h3>
+          <div class="container">
+            <div class="row">
+              <div class="col-3">
+                <ul class="list-style">
+                  {% for a in recipes.healthLabels1 %}
+                    <li class="fw-normal">{{ a }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="col-3">
+                <ul class="list-style">
+                  {% for a in recipes.healthLabels2 %}
+                    <li class="fw-normal">{{ a }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="col"></div>
             </div>
           </div>
+        </div>
+      </div>
+      <br><br>
 
+        <!-- INGREDIENTS -->
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
+          <h3 class="ingredients">Ingredients</h3>
+          {% for i in recipes.ingredients %} 
+            <input type="checkbox" id="ing1">
+            <label for="ing1">{{ i.text }}</label></br>
+          {% endfor %}
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4">
           <!-- HOW TO MAKE -->
-          <h3 class="procedure">Procdedue</h3>
-          <p>To know how to cook this recipe click <a href={{ recipes.url }}>here!</a> </p>
-  
+          <h3 class="procedure">Procedure</h3>
+          <p class="fw-normal">To learn how to cook this recipe, click <a href={{ recipes.url }}>here!</a> </p>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col">
           <!-- NUTRITIONAL FACTS -->
           <h3 class="procedure">Nutritional Facts</h3>
           <p class="emphasis">Calories per serving: {{ recipes.calories }}</p>
           <!-- <p class="emphasis">{{ recipes.nutrient }}</p> -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2"></div>
+        <div class="col-4">
           <table class="table">
             <tbody>
-              {% for nutrients in recipes.nutrient %} 
+              {% for nutrients in recipes.nutrient1 %} 
                 <tr>
-                  <td>{{ nutrients.label }}</td>
-                  <td>{{ nutrients.quantity }}</td>
+                  <th scope="row">{{ nutrients.label }}</th>
+                  <td> {{ nutrients.quantity }}</td>
+                </tr> 
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-4">
+          <table class="table">
+            <tbody>
+              {% for nutrients in recipes.nutrient2 %} 
+                <tr>
+                  <th scope="row">{{ nutrients.label }}</th>
+                  <td> {{ nutrients.quantity }}</td>
                 </tr> 
               {% endfor %}
             </tbody>
           </table>
         </div>
       </div>
-    <div>
+    </div>
   </div>
-</div>
 </main>
 {% endblock %}

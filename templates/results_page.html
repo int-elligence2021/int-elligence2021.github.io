@@ -48,6 +48,7 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
         <!---Loop and insert all recipes-->
         {% for r in recipes %}
         <div class="col">
@@ -56,7 +57,7 @@
 
             <div class="card-body">
               <h5 class="mt-0">{{r.label}}</h5>
-              <a href="{{ url_for('display_page', recipe_name=r.label) }}" class="stretched-link"></a>
+              <a href="{{ url_for('display_page', recipe_id=r.url) }}" class="stretched-link"></a>
               <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted">Missing ingredients: {{r.num_missing}}</small>
               </div>

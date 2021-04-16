@@ -33,7 +33,7 @@ def handle_selections(req):
 	return call_api(query, req['num_ingr'])
 
 def call_api(query, num_ingr):
-	resp = requests.get(url + query)
+	resp = requests.get(url + query + "&imageSize=LARGE")
 	# print(url+query)
 	if resp.status_code == 200:
 		d=json.loads(resp.text)
@@ -46,18 +46,14 @@ def call_api(query, num_ingr):
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
 			# add recipe to dict
 			recipe_dict['recipes'].append(recipe['recipe'])
-			# print(recipe['recipe']['label'])
-			# for ingr in recipe['recipe']['ingredients']:
-			# 	print(f"\t{ingr['text']}")
-			# print('\n')
 		return recipe_dict
 	
 	# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
 	return {'error': "filters"}
 
-def display_recipe(label):
+def display_recipe(id):
 	for recipe in recipe_dict['recipes']:
-		if recipe['label'] == label:
+		if recipe['url'] == id:
 			nutrient = []
 			for nutrients in recipe['totalNutrients']:
 				sample = {}
@@ -67,7 +63,10 @@ def display_recipe(label):
 					'quantity': x
 				}
 				nutrient.append(sample)
-			recipe["nutrient"] = nutrient
+			recipe["nutrient1"] = nutrient[0:int(len(nutrient)/2)]
+			recipe["nutrient2"] = nutrient[int(len(nutrient)/2) + 1:]
+			recipe["healthLabels1"] = recipe["healthLabels"][0:int(len(recipe["healthLabels"])/2)]
+			recipe["healthLabels2"] = recipe["healthLabels"][int(len(recipe["healthLabels"])/2) + 1:]
 			recipe["calories"] = round(recipe['calories'], 2)
 			return recipe
 	return {}
