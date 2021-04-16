@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from test_api import call_api, handle_selections
+from test_api import call_api, handle_selections, sort_by
 
 # saves recipe list and form inputs after every POST method
 data = {}
@@ -34,6 +34,7 @@ def results_page():
         num_ingr=len(ingredients)
         excluded=request.form.getlist('negSearch')
 
+
         sortby=request.form.get('sortby')
 
         recipe_list = handle_selections({
@@ -52,6 +53,9 @@ def results_page():
             session['error'] = recipe_list['error']
             return redirect(session['url']) # redirects to previous page
 
+
+        sorted_list=sort_by(recipe_list['recipes'], request.form.get('sortby'))
+
         # save recipe and form data so it is saved until the next successful POST method
         data['recipes'] = recipe_list['recipes']
         data['form_data'] = formRequest(request.form)
@@ -65,6 +69,7 @@ def results_page():
     session['url'] = url_for('results_page')
     e = errorCheck()
     return render_template('results_page.html', recipes=data['recipes'], form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f']) 
+
 
 
 @app.route('/display')
