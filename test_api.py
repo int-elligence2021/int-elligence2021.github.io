@@ -1,5 +1,6 @@
 import json
 import requests
+import pprint
 
 def handle_selections(req):
 	app_key='faa479368d9dd0d427347cfb1a32f2aa'
@@ -46,11 +47,6 @@ def call_api(query, num_ingr):
 			# add recipe to dict
 			recipe_dict['recipes'].append(recipe['recipe'])
 
-			#print(recipe['recipe']['label'])
-			#for ingr in recipe['recipe']['ingredients']:
-			#	print(f"\t{ingr['text']}")
-			#print('\n')
-
 		return recipe_dict
 	
 	# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
@@ -61,9 +57,22 @@ def sort_by(recipes, sort_option):
 			return r['num_missing']
 	def sort_alpha(r):
 			return r['label']
+	def sort_time_ascending(r):
+			return r['totalTime']
+	def sort_time_descending(r):
+			return r['totalTime']
+	def sort_calories(r):
+			return r['calories']
+		
 	if sort_option == 'missing':
 		return sorted(recipes, key=sort_missing)
-	if sort_option == 'alpha':
+	elif sort_option == 'alpha':
 		return sorted(recipes, key=sort_alpha)
+	elif sort_option == 'ascending':
+		return sorted(recipes, key=sort_time_ascending)
+	elif sort_option == 'descending':
+		return sorted(recipes, key=sort_time_descending, reverse=True)
+	elif sort_option == 'calories':
+		return sorted(recipes, key=sort_calories)
 	else:
 		return recipes
