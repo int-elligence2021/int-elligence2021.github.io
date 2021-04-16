@@ -88,6 +88,8 @@
       <script>alert("Your chosen filters do not match with any results.")</script>
       {% endif %}
 
+      
+      <form method="POST" action="{{ url_for('results_page') }}">
         
       {% block content %}
       <!--- File exclusive content -->
@@ -95,8 +97,6 @@
 
 
       <!---##############################################################################################################################-->
-
-      <form method="POST" action="{{ url_for('results_page') }}">
 
       <!--- Add ingredients modal -->
       <div class="modal fade" id="ingredientsModal" tabindex="-1" aria-labelledby="ingredientsModalLabel" aria-hidden="true">
@@ -601,6 +601,7 @@
         <script>
           document.getElementById('{{form_data.cuisineType}}').checked = true;
           document.getElementById('{{form_data.dishType}}').checked = true;
+          document.getElementById('alpha').checked = false;
           document.getElementById('{{form_data.sort}}').checked = true;
           /* changing time slider might be difficult */
         </script>
