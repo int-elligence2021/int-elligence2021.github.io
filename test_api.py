@@ -2,9 +2,16 @@ import json
 import requests
 import pprint
 
+recipe_dict = {
+	'error': None,
+	'recipes': []
+}
+
+app_key='faa479368d9dd0d427347cfb1a32f2aa'
+app_id='ed9ebd49'
+url='https://api.edamam.com/search?'
+
 def handle_selections(req):
-	app_key='faa479368d9dd0d427347cfb1a32f2aa'
-	app_id='ed9ebd49'
 
 	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=100"
 	
@@ -28,9 +35,7 @@ def handle_selections(req):
 	return call_api(query, req['num_ingr'], req['page'])
 
 def call_api(query, num_ingr, page):
-	url='https://api.edamam.com/search?'
-	resp = requests.get(url + query)
-	print(url+query)
+	resp = requests.get(url + query + "&imageSize=LARGE")
 	if resp.status_code == 200:
 		d=json.loads(resp.text)
 
@@ -42,6 +47,7 @@ def call_api(query, num_ingr, page):
 			'error': None,
 			'recipes': [],
 		}
+
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
 			# add recipe to dict
@@ -54,6 +60,45 @@ def call_api(query, num_ingr, page):
 	
 	# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
 	return {'error': "filters"}
+
+def display_recipe(id):
+	for recipe in recipe_dict['recipes']:
+		if recipe['url'] == id:
+			display_rec = {}
+			nutrient = []
+			for nutrients in recipe['totalNutrients']:
+				sample = {}
+				x = str(round(recipe['totalNutrients'][nutrients]['quantity'], 2)) + ' ' + recipe['totalNutrients'][nutrients]['unit']
+				sample = {
+					'label': recipe['totalNutrients'][nutrients]['label'],
+					'quantity': x
+				}
+				nutrient.append(sample)
+			display_rec = {
+				"title": recipe['label'],
+				"nutrient1": nutrient[0:int(len(nutrient)/2)],
+				"nutrient2": nutrient[int(len(nutrient)/2) + 1:],
+				"healthLabels1": recipe["healthLabels"][0:int(len(recipe["healthLabels"])/2)],
+				"healthLabels2": recipe["healthLabels"][int(len(recipe["healthLabels"])/2) + 1:],
+				"calories": round(recipe['calories'], 2),
+				"url": recipe['url'],
+				"image": recipe['image'],
+				"ingredients": recipe['ingredients']
+			}
+			return display_rec
+	return {}
+
+# FOR TESTING PURPOSES
+# recipe_list = handle_selections({
+# 	'health': '',
+# 	'diet': '',
+# 	'cuisineType': '',
+# 	'dishType': '',
+# 	'time': '1%2B',
+# 	'ingredients': [ 'chicken', 'pasta' ],
+# 	'num_ingr': 2,
+# 	'excluded': ''
+# })
 
 def sort_by(recipes, sort_option):
 	def sort_missing(r):
@@ -79,3 +124,4 @@ def sort_by(recipes, sort_option):
 		return sorted(recipes, key=sort_calories)
 	else:
 		return recipes
+

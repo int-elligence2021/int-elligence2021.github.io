@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from test_api import call_api, handle_selections, sort_by
-import pprint
+from test_api import call_api, handle_selections, display_recipe, sort_by
+import requests
 
 # saves recipe list and form inputs after every POST method
 data = {}
@@ -77,11 +77,18 @@ def results_page():
 
 
 
+
 @app.route('/display')
 def display_page():
-    session['url'] = url_for('display_page')
-    e = errorCheck()
-    return render_template('display_page.html', form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f'])
+    recipe_id = request.args.get('recipe_id')
+    recipe_info = display_recipe(recipe_id)
+    if recipe_info["image"][-4:] == '.jpg' and recipe_info["image"][-6:-4] != "-l":
+    	if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
+    		recipe_info['image'] = recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]
+    else:
+    	if (requests.head(recipe_info['image'] + "-l").status_code == 200):
+    		recipe_info['image'] = recipe_info['image'] + "-l"
+    return render_template('display_page.html', recipes=recipe_info)
 
 
 # saves the user data input into the forms and copies the data onto the next page
