@@ -43,10 +43,8 @@ def call_api(query, num_ingr, page):
 			# no hits means no recipes
 			return {'error': "ingredients"}
 
-		recipe_dict = {
-			'error': None,
-			'recipes': [],
-		}
+		recipe_dict['recipes'] = []
+		recipe_dict['error'] = None
 
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
