@@ -22,24 +22,19 @@
 
 {% block content %}
 
-<!--- Display a javascript error if there were any errors in searching for recipes -->
-{% if ingred_error %}
-<script>alert("There are no results for your chosen ingredients.")</script>
-{% elif filters_error %}
-<script>alert("Your chosen filters do not match with any results.")</script>
-{% endif %}
 
 <main class="container-fluid row">
 <section class="py-5 text-center container">
   <div class="row py-lg-5">
     <div class="col-lg-6 col-md-8 mx-auto">
       <h1 class="fw-light">Welcome to our landing page</h1>
-      <p class="lead text-muted">HomeCooks is presented by <i>"int elligence;"</i> from UNSW SENG2021 2021 T1. To begin, start by either adding your current ingredients or start filtering the type of dishes suggested to you.</p>
+      <p class="lead text-muted">HomeCooks is presented by <i>"int elligence;"</i> from UNSW SENG2021 2021 T1. To get started on finding a dish for you, click on <strong>Choose your ingredients</strong>.
+      Click on <strong>Select filters</strong>, if you want dishes better suited to your needs.</p>
       
       <!--- Buttons for ingredients and filters -->
       <p>
-        <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Add an ingredient</button>
-        <button type="button" class="btn btn-outline-primary my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Select filters</button>
+        <button type="button" class="btn btn-primary btn-lg my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Choose your ingredients</button>
+        <button type="button" class="btn btn-outline-primary btn-lg my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Select filters</button>
       </p>
     </div>
   </div>
