@@ -76,11 +76,8 @@ def results_page():
 
 
 
-<<<<<<< HEAD
-@app.route('/display_page')
-=======
+
 @app.route('/display')
->>>>>>> main
 def display_page():
     recipe_id = request.args.get('recipe_id')
     recipe_info = display_recipe(recipe_id)

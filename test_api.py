@@ -56,6 +56,7 @@ def call_api(query, num_ingr):
 def display_recipe(id):
 	for recipe in recipe_dict['recipes']:
 		if recipe['url'] == id:
+			display_rec = {}
 			nutrient = []
 			for nutrients in recipe['totalNutrients']:
 				sample = {}
@@ -65,12 +66,18 @@ def display_recipe(id):
 					'quantity': x
 				}
 				nutrient.append(sample)
-			recipe["nutrient1"] = nutrient[0:int(len(nutrient)/2)]
-			recipe["nutrient2"] = nutrient[int(len(nutrient)/2) + 1:]
-			recipe["healthLabels1"] = recipe["healthLabels"][0:int(len(recipe["healthLabels"])/2)]
-			recipe["healthLabels2"] = recipe["healthLabels"][int(len(recipe["healthLabels"])/2) + 1:]
-			recipe["calories"] = round(recipe['calories'], 2)
-			return recipe
+			display_rec = {
+				"title": recipe['label'],
+				"nutrient1": nutrient[0:int(len(nutrient)/2)],
+				"nutrient2": nutrient[int(len(nutrient)/2) + 1:],
+				"healthLabels1": recipe["healthLabels"][0:int(len(recipe["healthLabels"])/2)],
+				"healthLabels2": recipe["healthLabels"][int(len(recipe["healthLabels"])/2) + 1:],
+				"calories": round(recipe['calories'], 2),
+				"url": recipe['url'],
+				"image": recipe['image'],
+				"ingredients": recipe['ingredients']
+			}
+			return display_rec
 	return {}
 
 # FOR TESTING PURPOSES

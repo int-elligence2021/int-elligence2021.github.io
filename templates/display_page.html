@@ -14,7 +14,7 @@
     <div class="container">
       <!-- TITLE -->
       <a href="{{ url_for('results_page')}}" class="btn btn-outline-dark" role="button">Back</a>
-      <h1 class="recipe_name">{{ recipes.label }}</h1>
+      <h1 class="recipe_name">{{ recipes.title }}</h1>
       <br>
       <p class="image">
         <img src="{{ recipes.image }}" alt="recipe_image" style="width:100%;max-width:600px">
@@ -72,7 +72,7 @@
         <div class="col-2"></div>
         <div class="col">
           <!-- NUTRITIONAL FACTS -->
-          <h3 class="procedure">Nutritional Facts</h3>
+          <h3 class="procedure">Nutrients per serving</h3>
           <p class="emphasis">Calories per serving: {{ recipes.calories }}</p>
           <!-- <p class="emphasis">{{ recipes.nutrient }}</p> -->
         </div>
