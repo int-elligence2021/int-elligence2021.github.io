@@ -35,6 +35,11 @@ def results_page():
         num_ingr=len(ingredients)
         excluded=request.form.getlist('negSearch')
 
+        page=request.form.get('page')
+        
+        if page is None:
+            page=1
+
         recipe_list = handle_selections({
             'health': ','.join(health),
             'diet': ','.join(diet),
@@ -43,7 +48,8 @@ def results_page():
             'time': time,
             'ingredients': ','.join(ingredients),
             'num_ingr': num_ingr,
-            'excluded': ','.join(excluded)
+            'excluded': ','.join(excluded),
+            'page': page
         })
         
         if recipe_list['error'] is not None:
@@ -54,22 +60,20 @@ def results_page():
 
         sorted_list=sort_by(recipe_list['recipes'], request.form.get('sortby'))
 
-        for r in sorted_list:
-            print(r['totalTime'])
-
         # save recipe and form data so it is saved until the next successful POST method
-        data['recipes'] = sorted_list
+        data['recipes'] = sorted_list[recipe_list['start']:recipe_list['end']]
         data['form_data'] = formRequest(request.form)
+        data['page'] = f"page{page}"
 
         session['url'] = url_for('results_page')
-        e = errorCheck() 
-        return render_template('results_page.html', recipes=sorted_list, form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'])
+        e = errorCheck()
+        return render_template('results_page.html', recipes=data['recipes'], form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'], page=data['page'])
 
     # else request.method == GET
     # (clicked back button from display page)
     session['url'] = url_for('results_page')
     e = errorCheck()
-    return render_template('results_page.html', recipes=data['recipes'], form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f']) 
+    return render_template('results_page.html', recipes=data['recipes'], form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f'], page=data['page']) 
 
 
 
