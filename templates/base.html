@@ -560,6 +560,16 @@
       </footer>
 
 
+      <!-- Sort Button, change button if user selected different option than default (missing) -->
+      {% if form_data %}
+        <script>
+          document.getElementById('missing').checked = false;
+          document.getElementById('{{form_data.sort}}').checked = true;
+        </script>
+      {% endif %}
+      
+
+
       <!-- Saves all form data so all entered data is the same as it was before redirect -->
       {% if form_data %}
         <script>
@@ -601,8 +611,8 @@
         <script>
           document.getElementById('{{form_data.cuisineType}}').checked = true;
           document.getElementById('{{form_data.dishType}}').checked = true;
-          document.getElementById('missing').checked = false;
-          document.getElementById('{{form_data.sort}}').checked = true;
+          // document.getElementById('missing').checked = false;
+          // document.getElementById('{{form_data.sort}}').checked = true;
           /* changing time slider might be difficult */
         </script>
 
