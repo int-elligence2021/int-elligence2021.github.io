@@ -1,13 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-<<<<<<< HEAD
-from test_api import call_api, handle_selections, display_recipe
+from test_api import call_api, handle_selections, display_recipe, sort_by
 import requests
 
 # saves recipe list and form inputs after every POST method
 data = {}
-=======
-from test_api import call_api, handle_selections, sort_by
->>>>>>> main
 
 # saves recipe list and form inputs after every POST method
 data = {}
