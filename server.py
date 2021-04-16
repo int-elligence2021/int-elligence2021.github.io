@@ -5,9 +5,6 @@ import requests
 # saves recipe list and form inputs after every POST method
 data = {}
 
-# saves recipe list and form inputs after every POST method
-data = {}
-
 app = Flask(__name__)
 app.secret_key = "int-elligence"
 

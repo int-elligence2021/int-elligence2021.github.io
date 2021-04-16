@@ -6,6 +6,7 @@ recipe_dict = {
 	'error': None,
 	'recipes': []
 }
+
 app_key='faa479368d9dd0d427347cfb1a32f2aa'
 app_id='ed9ebd49'
 url='https://api.edamam.com/search?'
@@ -43,6 +44,7 @@ def call_api(query, num_ingr):
 			# no hits means no recipes
 			return {'error': "ingredients"}
 
+		recipe_dict['recipes'] = []
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
 			# add recipe to dict
