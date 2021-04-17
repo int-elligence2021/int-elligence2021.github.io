@@ -502,7 +502,7 @@
             <div class="modal-body">
               
               <div class="form-check">
-                <input class="form-check-input" type="radio" id="alpha" name="sortby" value="alpha" checked>
+                <input class="form-check-input" type="radio" id="alpha" name="sortby" value="alpha">
                 <label class="form-check-label" for="alpha">Alphabetical order</label>
               </div>
 
@@ -528,7 +528,7 @@
               </div>
 
               <div class="form-check">
-                <input class="form-check-input" type="radio" id="missing" name="sortby" value="missing">
+                <input class="form-check-input" type="radio" id="missing" name="sortby" value="missing" checked>
                 <label class="form-check-label" for="missing">
                   Least number of missing ingredients
                 </label>
@@ -540,7 +540,7 @@
               <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Enter ingredients</button>
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
 
-              <input type="submit" value="Sort" class="btn btn-primary">
+              <input type="submit" value="Find recipes" class="btn btn-primary">
             </div>
           </div>
         </div>
@@ -558,6 +558,16 @@
           </p>
         </div>
       </footer>
+
+
+      <!-- Sort Button, change button if user selected different option than default (missing) -->
+      {% if form_data %}
+        <script>
+          document.getElementById('missing').checked = false;
+          document.getElementById('{{form_data.sort}}').checked = true;
+        </script>
+      {% endif %}
+      
 
 
       <!-- Saves all form data so all entered data is the same as it was before redirect -->
@@ -601,8 +611,10 @@
         <script>
           document.getElementById('{{form_data.cuisineType}}').checked = true;
           document.getElementById('{{form_data.dishType}}').checked = true;
-          document.getElementById('alpha').checked = false;
-          document.getElementById('{{form_data.sort}}').checked = true;
+
+          // document.getElementById('missing').checked = false;
+          // document.getElementById('{{form_data.sort}}').checked = true;
+
           /* changing time slider might be difficult */
         </script>
 
@@ -632,6 +644,15 @@
         {% endfor %}
 
       {% endif %}
+
+      <script>
+        $('form input').keydown(function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+      </script>
 
 
       <!---##############################################################################################################################-->
