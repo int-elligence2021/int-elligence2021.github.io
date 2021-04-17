@@ -36,11 +36,8 @@ def results_page():
         excluded=request.form.getlist('negSearch')
 
         page=request.form.get('page')
-        
-        if page is None:
-            page=1
 
-        recipe_list = handle_selections({
+        recipe_list, page = handle_selections({
             'health': ','.join(health),
             'diet': ','.join(diet),
             'cuisineType': cuisineType,
@@ -64,16 +61,22 @@ def results_page():
         data['recipes'] = sorted_list[recipe_list['start']:recipe_list['end']]
         data['form_data'] = formRequest(request.form)
         data['page'] = f"page{page}"
+        data['total_pages'] = recipe_list['total_pages']
 
-        session['url'] = url_for('results_page')
-        e = errorCheck()
-        return render_template('results_page.html', recipes=data['recipes'], form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'], page=data['page'])
+        #session['url'] = url_for('results_page')
+        #e = errorCheck()
+        #return render_template('results_page.html', recipes=data['recipes'], 
+        #    form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'], 
+        #    page=data['page'], total_pages=[x+2 for x in range(data['total_pages']-1)])
 
     # else request.method == GET
     # (clicked back button from display page)
     session['url'] = url_for('results_page')
     e = errorCheck()
-    return render_template('results_page.html', recipes=data['recipes'], form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f'], page=data['page']) 
+    print(data['form_data'])
+    return render_template('results_page.html', recipes=data['recipes'],
+        form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f'],
+        page=data['page'], total_pages=[x+2 for x in range(data['total_pages']-1)]) 
 
 
 
@@ -89,7 +92,7 @@ def display_page():
     else:
     	if (requests.head(recipe_info['image'] + "-l").status_code == 200):
     		recipe_info['image'] = recipe_info['image'] + "-l"
-    return render_template('display_page.html', recipes=recipe_info)
+    return render_template('display_page.html', display=recipe_info)
 
 
 # saves the user data input into the forms and copies the data onto the next page
