@@ -13,7 +13,7 @@ app.secret_key = "int-elligence"
 def index():
     # Temporarily added to avoid errors when clicked on a 'trending recipe'
     data['form_data'] = formRequest(request.form)
-    data['recipes'] = {}
+    # data['recipes'] = {}
     recipes = easy_recipe()
     session['url'] = url_for('index') # stores url of current page so it can be redirected to in the case of ingredient/filter errors
     e = errorCheck()    
