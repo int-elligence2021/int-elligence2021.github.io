@@ -52,11 +52,6 @@ def call_api(query, num_ingr, page):
 			# no hits means no recipes
 			return {'error': "ingredients"}, None
 
-		recipe_dict = {
-			'error': None,
-			'recipes': [],
-		}
-
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
 			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
@@ -98,22 +93,25 @@ def display_recipe(id):
 
 def easy_recipe():
 	ez_list = []
-	easy_foods = [ 'Eggy Fried Rice', 'Tomato and Basil Pasta recipes', 'Banana Pancake' ]
-	for recipe in easy_foods:
-		recipe_list = handle_selections({
+	easy_foods = [ 'Eggy Fried Rice', 'Tomato Basil Pasta', 'Banana Pancake' ]
+	for target_recipe in easy_foods:
+		# print(target_recipe)
+		recipe_list, page = handle_selections({
 		'health': '',
 		'diet': '',
 		'cuisineType': '',
 		'dishType': '',
 		'time': '1%2B',
-		'ingredients': [ recipe ],
+		'ingredients': [ target_recipe ],
 		'num_ingr': 1,
-		'excluded': ''
+		'excluded': '',
+		'page': None
 		})
-		# gets only the first result
+		# print(recipe_list)
 		for recipe in recipe_list['recipes']:
-			ez_list.append(recipe)
-			break
+			if recipe['label'] == target_recipe:
+				ez_list.append(recipe)
+				break
 	return ez_list
 
 def sort_by(recipes, sort_option):
@@ -140,6 +138,3 @@ def sort_by(recipes, sort_option):
 		return sorted(recipes, key=sort_calories)
 	else:
 		return recipes
-
-
-
