@@ -61,12 +61,16 @@
               <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted">Missing ingredients: {{r.num_missing}}</small>
               </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Cooking time: {{r.totalTime}}</small>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Total calories: {{r.calories}} kcal</small>
+              </div>
             </div>
           </div>
         </div>
         {% endfor %}
-
-
       </div>    
     </div>
   </div>
@@ -74,13 +78,11 @@
   <!--Pagination-->
   <br>
   <nav aria-label="...">
-    <ul id="pagination" class="pagination pagination-lg justify-content-end">
-      <li id="page1" class="page-item active"><input type="submit" name="page" value="1" class="page-item page-link" tabindex="-1" disabled></li>
-      <li id="page2" class="page-item"><input type="submit" name="page" value="2" class="page-item page-link"></li>
-      <li id="page3" class="page-item"><input type="submit" name="page" value="3" class="page-item page-link"></li>
-      <li id="page4" class="page-item"><input type="submit" name="page" value="4" class="page-item page-link"></li>
-      <li id="page5" class="page-item"><input type="submit" name="page" value="5" class="page-item page-link"></li>
-
+    <ul id="pagination" class="pagination pagination-sm justify-content-end">
+      <li id="page1" class="page-item active"><input type="submit" name="page" value="1" class="page-item page-link" disabled></li>
+      {% for i in total_pages %}
+      <li id="page{{i}}" class="page-item"><input type="submit" name="page" value="{{i}}" class="page-item page-link"></li>
+      {% endfor %}
     </ul>
   </nav>
 

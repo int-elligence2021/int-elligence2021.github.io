@@ -540,7 +540,7 @@
               <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Enter ingredients</button>
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
 
-              <input type="submit" value="Sort" class="btn btn-primary">
+              <input type="submit" value="Find recipes" class="btn btn-primary">
             </div>
           </div>
         </div>
@@ -611,8 +611,10 @@
         <script>
           document.getElementById('{{form_data.cuisineType}}').checked = true;
           document.getElementById('{{form_data.dishType}}').checked = true;
+
           // document.getElementById('missing').checked = false;
           // document.getElementById('{{form_data.sort}}').checked = true;
+
           /* changing time slider might be difficult */
         </script>
 
