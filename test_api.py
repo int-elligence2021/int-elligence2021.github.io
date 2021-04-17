@@ -1,12 +1,21 @@
 import json
 import requests
+import pprint
+import math
+
+recipe_dict = {
+	'error': None,
+	'recipes': [],
+	'total_pages':0
+}
+
+app_key='faa479368d9dd0d427347cfb1a32f2aa'
+app_id='ed9ebd49'
+url='https://api.edamam.com/search?'
 
 def handle_selections(req):
-	app_key='faa479368d9dd0d427347cfb1a32f2aa'
-	app_id='ed9ebd49'
 
-	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=50"
-	
+	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=100"
 	if req['diet'] != '':
 		query=f"{query}&diet={req['diet']}"
 
@@ -24,34 +33,101 @@ def handle_selections(req):
 	if req['excluded'] != '':
 		query=f"{query}&excluded={req['excluded']}"
 
-	return call_api(query, req['num_ingr'])
+	query+="&imageSize=LARGE"
+	return call_api(query, req['num_ingr'], req['page'])
 
-def call_api(query, num_ingr):
-	url='https://api.edamam.com/search?'
-	resp = requests.get(url + query)
-	print(url+query)
-	if resp.status_code == 200:
+def call_api(query, num_ingr, page):
+	if page is None:
+		resp = requests.get(url + query)
+		if resp.status_code != 200:
+			# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
+			return {'error': "filters"}
+
 		d=json.loads(resp.text)
+		recipe_dict["total_pages"] = math.ceil(d['count'] / 21)
+		if int(recipe_dict["total_pages"]) > 5:
+			recipe_dict["total_pages"] = 5
 
 		if not d['hits']:
 			# no hits means no recipes
 			return {'error': "ingredients"}
 
-		recipe_dict = {
-			'error': None,
-			'recipes': []
-		}
+		recipe_dict['recipes'] = []
+		recipe_dict['error'] = None
+
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
+			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
 			# add recipe to dict
 			recipe_dict['recipes'].append(recipe['recipe'])
+		page = 1
 
-			print(recipe['recipe']['label'])
-			for ingr in recipe['recipe']['ingredients']:
-				print(f"\t{ingr['text']}")
-			print('\n')
+	recipe_dict['start'] = (int(page)-1)*21
+	recipe_dict['end'] = int(page)*21
 
-		return recipe_dict
-	
-	# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
-	return {'error': "filters"}
+	return recipe_dict, page
+
+def display_recipe(id):
+	for recipe in recipe_dict['recipes']:
+		if recipe['url'] == id:
+			display_rec = {}
+			nutrient = []
+			for nutrients in recipe['totalNutrients']:
+				sample = {}
+				x = str(round(recipe['totalNutrients'][nutrients]['quantity'], 2)) + ' ' + recipe['totalNutrients'][nutrients]['unit']
+				sample = {
+					'label': recipe['totalNutrients'][nutrients]['label'],
+					'quantity': x
+				}
+				nutrient.append(sample)
+			display_rec = {
+				"title": recipe['label'],
+				"nutrient1": nutrient[0:int(len(nutrient)/2)],
+				"nutrient2": nutrient[int(len(nutrient)/2) + 1:],
+				"healthLabels1": recipe["healthLabels"][0:int(len(recipe["healthLabels"])/2)],
+				"healthLabels2": recipe["healthLabels"][int(len(recipe["healthLabels"])/2) + 1:],
+				"calories": recipe['calories'],
+				"url": recipe['url'],
+				"image": recipe['image'],
+				"ingredients": recipe['ingredients']
+			}
+			return display_rec
+	return {}
+
+# FOR TESTING PURPOSES
+# recipe_list = handle_selections({
+# 	'health': '',
+# 	'diet': '',
+# 	'cuisineType': '',
+# 	'dishType': '',
+# 	'time': '1%2B',
+# 	'ingredients': [ 'chicken', 'pasta' ],
+# 	'num_ingr': 2,
+# 	'excluded': ''
+# })
+
+def sort_by(recipes, sort_option):
+	def sort_missing(r):
+			return r['num_missing']
+	def sort_alpha(r):
+			return r['label']
+	def sort_time_ascending(r):
+			return r['totalTime']
+	def sort_time_descending(r):
+			return r['totalTime']
+	def sort_calories(r):
+			return int(r['calories'])
+		
+	if sort_option == 'missing':
+		return sorted(recipes, key=sort_missing)
+	elif sort_option == 'alpha':
+		return sorted(recipes, key=sort_alpha)
+	elif sort_option == 'ascending':
+		return sorted(recipes, key=sort_time_ascending)
+	elif sort_option == 'descending':
+		return sorted(recipes, key=sort_time_descending, reverse=True)
+	elif sort_option == 'calories':
+		return sorted(recipes, key=sort_calories)
+	else:
+		return recipes
+
