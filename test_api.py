@@ -8,6 +8,7 @@ recipe_dict = {
 	'recipes': [],
 	'total_pages':0
 }
+ez_list = []
 
 app_key='faa479368d9dd0d427347cfb1a32f2aa'
 app_id='ed9ebd49'
@@ -42,6 +43,8 @@ def call_api(query, num_ingr, page):
 		if resp.status_code != 200:
 			# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
 			return {'error': "filters"}, None
+
+		recipe_dict['recipes'] = []
 
 		d=json.loads(resp.text)
 		recipe_dict["total_pages"] = math.ceil(d['count'] / 21)
@@ -92,7 +95,6 @@ def display_recipe(id):
 	return {}
 
 def easy_recipe():
-	ez_list = []
 	easy_foods = [ 'Eggy Fried Rice', 'Tomato Basil Pasta', 'Banana Pancakes' ]
 	for target_recipe in easy_foods:
 		# print(target_recipe)
@@ -107,13 +109,41 @@ def easy_recipe():
 		'excluded': '',
 		'page': None
 		})
-		# print(recipe_list)
 		for recipe in easyrep_list['recipes']:
-			if recipe['label'] == target_recipe:
+			if len(ez_list) == 3:
+				break
+			if recipe['label'] == target_recipe and recipe not in ez_list:
 				# print(recipe)
 				ez_list.append(recipe)
 				break
 	return ez_list
+
+def display_easyrecipe(id):
+	for recipe in ez_list:
+		if recipe['url'] == id:
+			display_rec = {}
+			nutrient = []
+			for nutrients in recipe['totalNutrients']:
+				sample = {}
+				x = str(round(recipe['totalNutrients'][nutrients]['quantity'], 2)) + ' ' + recipe['totalNutrients'][nutrients]['unit']
+				sample = {
+					'label': recipe['totalNutrients'][nutrients]['label'],
+					'quantity': x
+				}
+				nutrient.append(sample)
+			display_rec = {
+				"title": recipe['label'],
+				"nutrient1": nutrient[0:int(len(nutrient)/2)],
+				"nutrient2": nutrient[int(len(nutrient)/2) + 1:],
+				"healthLabels1": recipe["healthLabels"][0:int(len(recipe["healthLabels"])/2)],
+				"healthLabels2": recipe["healthLabels"][int(len(recipe["healthLabels"])/2) + 1:],
+				"calories": recipe['calories'],
+				"url": recipe['url'],
+				"image": recipe['image'],
+				"ingredients": recipe['ingredients']
+			}
+			return display_rec
+	return {}
 
 def sort_by(recipes, sort_option):
 	def sort_missing(r):

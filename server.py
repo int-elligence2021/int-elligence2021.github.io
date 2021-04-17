@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from test_api import call_api, handle_selections, display_recipe, sort_by, easy_recipe
+from test_api import call_api, handle_selections, display_recipe, sort_by, easy_recipe, display_easyrecipe
 import requests
 
 # saves recipe list and form inputs after every POST method
@@ -79,13 +79,15 @@ def results_page():
         page=data['page'], total_pages=[x+2 for x in range(data['total_pages']-1)]) 
 
 
-
-
 @app.route('/display')
 def display_page():
     recipe_id = request.args.get('recipe_id')
     print(recipe_id)
     recipe_info = display_recipe(recipe_id)
+
+    if not recipe_info:
+        recipe_info = display_easyrecipe(recipe_id)
+
     if recipe_info["image"][-4:] == '.jpg' and recipe_info["image"][-6:-4] != "-l":
     	if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
     		recipe_info['image'] = recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]
@@ -93,6 +95,20 @@ def display_page():
     	if (requests.head(recipe_info['image'] + "-l").status_code == 200):
     		recipe_info['image'] = recipe_info['image'] + "-l"
     return render_template('display_page.html', display=recipe_info)
+
+
+# @app.route('/easydisplay')
+# def display_easypage():
+#     recipe_id = request.args.get('recipe_id')
+#     print(recipe_id)
+#     recipe_info = display_recipe(recipe_id)
+#     if recipe_info["image"][-4:] == '.jpg' and recipe_info["image"][-6:-4] != "-l":
+#     	if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
+#     		recipe_info['image'] = recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]
+#     else:
+#     	if (requests.head(recipe_info['image'] + "-l").status_code == 200):
+#     		recipe_info['image'] = recipe_info['image'] + "-l"
+#     return render_template('display_page.html', display=recipe_info)
 
 
 # saves the user data input into the forms and copies the data onto the next page
