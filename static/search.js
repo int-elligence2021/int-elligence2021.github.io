@@ -1,11 +1,20 @@
 /* Adding search items to a list.. */
 
-/* Add ingredients after typing them to the list" */
-var button_add = document.getElementById("enteringredients");
-var input_add = document.getElementById("typeingredient");
-var ul_add = document.querySelector("#add_ingredients_list");
+///////////////////////////////////////////////////////////////////////////
+/* ADD INGREDIENTS */
 
-button_add.addEventListener("click", function() {
+/* Add ingredients when enter key pressed inside input field */
+$("#typeingredient").keyup(function(event) {
+  if (event.keyCode === 13) {
+    $("#enteringredients").click();
+  }
+});
+
+/* Add ingredients after typing them to the list */
+$("#enteringredients").click(function() {
+  var input_add = document.getElementById("typeingredient");
+  var ul_add = document.querySelector("#add_ingredients_list");
+
   var li_add = document.createElement("li");
   var input = document.createElement("input");
 
@@ -21,17 +30,26 @@ button_add.addEventListener("click", function() {
   input.value = input_add.value;
 
   li_add.appendChild(input);
-
   ul_add.appendChild(li_add);
-})
+});
 
+
+////////////////////////////////////////////////////////////////////////////
+/* NEGATIVE SEARCH */
+
+
+/* Add ingredients to negative search when enter key pressed inside input field */
+$("#typerem").keyup(function(event) {
+  if (event.keyCode === 13) {
+    $("#remingredient").click();
+  }
+});
 
 /* Add ingredients to negative search list after typing them */
-var button_rem = document.getElementById("remingredient");
-var input_rem = document.getElementById("typerem");
-var ul_rem = document.querySelector("#rem_ingredients_list");
+$("#remingredient").click(function() {
+  var input_rem = document.getElementById("typerem");
+  var ul_rem = document.querySelector("#rem_ingredients_list");
 
-button_rem.addEventListener("click", function() {
   var li_rem = document.createElement("li");
   var input = document.createElement("input");
 
@@ -47,9 +65,8 @@ button_rem.addEventListener("click", function() {
   input.value = input_rem.value;
 
   li_rem.appendChild(input);
-
   ul_rem.appendChild(li_rem);
-})
+});
 
 
 /* removes current item from the parent node */
