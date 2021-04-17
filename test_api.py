@@ -15,7 +15,7 @@ url='https://api.edamam.com/search?'
 
 def handle_selections(req):
 
-	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=100"
+	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=99"
 	if req['diet'] != '':
 		query=f"{query}&diet={req['diet']}"
 
