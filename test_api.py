@@ -93,7 +93,7 @@ def display_recipe(id):
 
 def easy_recipe():
 	ez_list = []
-	easy_foods = [ 'Eggy Fried Rice', 'Tomato Basil Pasta', 'Banana Pancake' ]
+	easy_foods = [ 'Eggy Fried Rice', 'Tomato Basil Pasta', 'Banana Pancakes' ]
 	for target_recipe in easy_foods:
 		# print(target_recipe)
 		recipe_list, page = handle_selections({
@@ -110,9 +110,10 @@ def easy_recipe():
 		# print(recipe_list)
 		for recipe in recipe_list['recipes']:
 			if recipe['label'] == target_recipe:
+				# print(recipe)
 				ez_list.append(recipe)
 				break
-	return ez_list
+	print(ez_list)
 
 def sort_by(recipes, sort_option):
 	def sort_missing(r):
@@ -138,3 +139,5 @@ def sort_by(recipes, sort_option):
 		return sorted(recipes, key=sort_calories)
 	else:
 		return recipes
+
+easy_recipe()

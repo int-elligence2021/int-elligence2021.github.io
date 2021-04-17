@@ -51,8 +51,7 @@
         {% for r in recipes %}
         <div class="col">
           <div class="card shadow-sm">
-            <img src={{r.image}} alt={{r.label}} style="width:100%">
-
+            <img src={{r.image}} alt={{r.label}} style="width:100%;max-width:600px;height:225px">
             <div class="card-body">
               <h5 class="mt-0">{{r.label}}</h5>
               <a href="{{ url_for('display_page', recipe_id=r.url) }}" class="stretched-link"></a>
