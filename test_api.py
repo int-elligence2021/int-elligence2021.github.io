@@ -41,7 +41,7 @@ def call_api(query, num_ingr, page):
 		resp = requests.get(url + query)
 		if resp.status_code != 200:
 			# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
-			return {'error': "filters"}
+			return {'error': "filters"}, None
 
 		d=json.loads(resp.text)
 		recipe_dict["total_pages"] = math.ceil(d['count'] / 21)
@@ -50,7 +50,7 @@ def call_api(query, num_ingr, page):
 
 		if not d['hits']:
 			# no hits means no recipes
-			return {'error': "ingredients"}
+			return {'error': "ingredients"}, None
 
 		recipe_dict['recipes'] = []
 		recipe_dict['error'] = None
