@@ -32,9 +32,9 @@ def handle_selections(req):
 	if req['excluded'] != '':
 		query=f"{query}&excluded={req['excluded']}"
 
-	return call_api(query, req['num_ingr'], req['page'])
+	return call_api(query, req['num_ingr'])
 
-def call_api(query, num_ingr, page):
+def call_api(query, num_ingr):
 	resp = requests.get(url + query + "&imageSize=LARGE")
 	if resp.status_code == 200:
 		d=json.loads(resp.text)
@@ -43,16 +43,15 @@ def call_api(query, num_ingr, page):
 			# no hits means no recipes
 			return {'error': "ingredients"}
 
-		recipe_dict['recipes'] = []
-		recipe_dict['error'] = None
+		recipe_dict = {
+			'error': None,
+			'recipes': [],
+		}
 
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
 			# add recipe to dict
 			recipe_dict['recipes'].append(recipe['recipe'])
-		
-		recipe_dict['start'] = int(page)*20 - 20
-		recipe_dict['end'] = int(page)*20
 
 		return recipe_dict
 	
@@ -86,17 +85,25 @@ def display_recipe(id):
 			return display_rec
 	return {}
 
-# FOR TESTING PURPOSES
-# recipe_list = handle_selections({
-# 	'health': '',
-# 	'diet': '',
-# 	'cuisineType': '',
-# 	'dishType': '',
-# 	'time': '1%2B',
-# 	'ingredients': [ 'chicken', 'pasta' ],
-# 	'num_ingr': 2,
-# 	'excluded': ''
-# })
+def easy_recipe():
+	ez_list = []
+	easy_foods = [ 'Eggy Fried Rice', 'Tomato and Basil Pasta recipes', 'Banana Pancake' ]
+	for recipe in easy_foods:
+		recipe_list = handle_selections({
+		'health': '',
+		'diet': '',
+		'cuisineType': '',
+		'dishType': '',
+		'time': '1%2B',
+		'ingredients': [ recipe ],
+		'num_ingr': 1,
+		'excluded': ''
+		})
+		# gets only the first result
+		for recipe in recipe_list['recipes']:
+			ez_list.append(recipe)
+			break
+	return ez_list
 
 def sort_by(recipes, sort_option):
 	def sort_missing(r):
@@ -122,4 +129,6 @@ def sort_by(recipes, sort_option):
 		return sorted(recipes, key=sort_calories)
 	else:
 		return recipes
+
+
 

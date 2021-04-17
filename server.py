@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from test_api import call_api, handle_selections, display_recipe, sort_by
+from test_api import call_api, handle_selections, display_recipe, sort_by, easy_recipe
 import requests
 
 # saves recipe list and form inputs after every POST method
@@ -14,10 +14,10 @@ def index():
     # Temporarily added to avoid errors when clicked on a 'trending recipe'
     data['form_data'] = formRequest(request.form)
     data['recipes'] = {}
-
+    recipes = easy_recipe()
     session['url'] = url_for('index') # stores url of current page so it can be redirected to in the case of ingredient/filter errors
     e = errorCheck()    
-    return render_template('index.html', ingred_error=e['i'], filters_error=e['f'])
+    return render_template('index.html', ingred_error=e['i'], filters_error=e['f'], recipes=recipes)
 
 
 @app.route('/results', methods=["POST", "GET"])
@@ -81,6 +81,7 @@ def results_page():
 @app.route('/display')
 def display_page():
     recipe_id = request.args.get('recipe_id')
+    print(recipe_id)
     recipe_info = display_recipe(recipe_id)
     if recipe_info["image"][-4:] == '.jpg' and recipe_info["image"][-6:-4] != "-l":
     	if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
