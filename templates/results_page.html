@@ -3,31 +3,31 @@
 {% block title %}HomeCooks · Recipes{% endblock %}
 
 {% block content %}
-
-<!-- <link href="{{ url_for('SourceCode_and_Documentation', filename='results_page.css')}}" rel="stylesheet"> -->
-
-<!-- <div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <button type="button" class="btn btn-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Change Ingredients</button>           
-          </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Change filters</button>
-          </li> -->
-          <!-- Button trigger sortbyModal -->
-          <!-- <li class="nav-item">
-            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort by</button>
-          </li>
-        </ul>
-      </div>
-    </nav> -->
+<link href="{{ url_for('static', filename='results_page.css')}}" rel="stylesheet">
 
 <!-- main -->
 <main class="col-md-2 ms-sm-auto col-lg-12 px-md-4">
+  <button onclick="topFunction()" id="myBtn" title="Go to top">&#708</button>
+  <script>
+    mybutton = document.getElementById("myBtn");
 
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+  </script>
 <div class="container"
   data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
   <section class="py-4 text-center container">
@@ -43,7 +43,7 @@
   <button type="button" class="btn btn-outline-primary btn-md my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Change Ingredients</button>
   <button type="button" class="btn btn-outline-primary btn-md my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Refine Search</button>
   <button type="button" class="btn btn-outline-primary btn-md my-2" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort by</button>
-  <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button"><i class="fas fa-chevron-up"></i></a>
+  
   <!-- album template - recipes -->
   <div class="album py-5 bg-light">
     <div class="container">
