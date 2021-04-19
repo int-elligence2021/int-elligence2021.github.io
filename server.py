@@ -25,7 +25,7 @@ def results_page():
     if request.method == "POST":
 
         health=request.form.getlist('dietary_req')
-        diet=request.form.getlist('nut_req')
+        diet=request.form.get('nut_req')
 
         cuisineType=request.form.get('cuisine')
         dishType=request.form.get('mealtype')
@@ -39,7 +39,7 @@ def results_page():
 
         recipe_list, page = handle_selections({
             'health': health,
-            'diet': ','.join(diet),
+            'diet': diet,
             'cuisineType': cuisineType,
             'dishType': dishType,
             'time': time,
@@ -99,7 +99,7 @@ def display_page():
 def formRequest(form):
     return {
         'diet_req': form.getlist('dietary_req'),
-        'nut_req': form.getlist('nut_req'),
+        'nut_req': form.get('nut_req'),
         'cuisineType': form.get('cuisine'),
         'dishType': form.get('mealtype'),
         'ingredients': form.getlist('addIngred'),

@@ -40,6 +40,7 @@ def call_api(query, ingr_list, page):
 	if page is None:
 		resp = requests.get(url + query)
 		if resp.status_code != 200:
+			print(url+query)
 			# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
 			return {'error': "filters"}, None
 

@@ -224,29 +224,33 @@
                   <div class="accordion-body">
             
                     <p>Select any nutritional requirements which you may require:</p>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="balanced" value="balanced" name="nut_req">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="balanced" value="balanced" name="nut_req">
                       <label class="form-check-label" for="balanced">Balanced</label>
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="high-fiber" value="high-fiber" name="nut_req">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="high-fiber" value="high-fiber" name="nut_req">
                       <label class="form-check-label" for="high-fiber">High-Fiber</label>
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="high-protein" value="high-protein" name="nut_req">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="high-protein" value="high-protein" name="nut_req">
                       <label class="form-check-label" for="high-protein">High-Protein</label>
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="low-carb" value="low-carb" name="nut_req">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="low-carb" value="low-carb" name="nut_req">
                       <label class="form-check-label" for="low-carb">Low-Carb</label>
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="low-fat" value="low-fat" name="nut_req">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="low-fat" value="low-fat" name="nut_req">
                       <label class="form-check-label" for="low-fat">Low-Fat</label>
                     </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="low-sodium" value="low-sodium" name="nut_req">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="low-sodium" value="low-sodium" name="nut_req">
                       <label class="form-check-label" for="low-sodium">Low-Sodium</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" id="no-nut" value="" name="nut_req" checked>
+                      <label class="form-check-label" for="no-nut">None of the above</label>
                     </div>
 
                   </div>
@@ -602,13 +606,8 @@
           </script>
         {% endfor %}
 
-        {% for n in form_data.nut_req %}
-          <script>
-            document.getElementById('{{n}}').checked = true;
-          </script>
-        {% endfor %}
-
         <script>
+          document.getElementById('{{form_data.nut_req}}').checked = true;
           document.getElementById('{{form_data.cuisineType}}').checked = true;
           document.getElementById('{{form_data.dishType}}').checked = true;
 
