@@ -61,8 +61,9 @@ def call_api(query, ingr_list, page):
 			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
 			recipe['recipe']['totalTime'] = int(recipe['recipe']['totalTime'])
 			# add recipe to dict
-			if recipe['recipe']['totalTime'] != 0:
-				recipe_dict['recipes'].append(recipe['recipe'])
+			if recipe['recipe']['totalTime'] == 0:
+				recipe['recipe']['totalTime'] = 25
+			recipe_dict['recipes'].append(recipe['recipe'])
 
 		recipe_dict["total_pages"] = math.ceil(len(recipe_dict['recipes']) / 21)
 		if int(recipe_dict["total_pages"]) > 5:
