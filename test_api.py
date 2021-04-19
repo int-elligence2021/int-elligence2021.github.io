@@ -44,9 +44,6 @@ def call_api(query, ingr_list, page):
 			return {'error': "filters"}, None
 
 		d=json.loads(resp.text)
-		recipe_dict["total_pages"] = math.ceil(d['count'] / 21)
-		if int(recipe_dict["total_pages"]) > 5:
-			recipe_dict["total_pages"] = 5
 
 		if not d['hits']:
 			# no hits means no recipes
@@ -62,8 +59,14 @@ def call_api(query, ingr_list, page):
 				if not any(i in ingr['text'] for i in ingr_list):
 					recipe['recipe']['num_missing'] += 1
 			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
+			recipe['recipe']['totalTime'] = int(recipe['recipe']['totalTime'])
 			# add recipe to dict
-			recipe_dict['recipes'].append(recipe['recipe'])
+			if recipe['recipe']['totalTime'] != 0:
+				recipe_dict['recipes'].append(recipe['recipe'])
+
+		recipe_dict["total_pages"] = math.ceil(len(recipe_dict['recipes']) / 21)
+		if int(recipe_dict["total_pages"]) > 5:
+			recipe_dict["total_pages"] = 5
 		page = 1
 
 	recipe_dict['start'] = (int(page)-1)*21
