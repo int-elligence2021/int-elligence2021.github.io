@@ -63,6 +63,9 @@ def results_page():
         data['page'] = f"page{page}"
         data['total_pages'] = recipe_list['total_pages']
 
+        # back to home page
+        back = url_for('index')
+
         #session['url'] = url_for('results_page')
         #e = errorCheck()
         #return render_template('results_page.html', recipes=data['recipes'], 
@@ -76,7 +79,7 @@ def results_page():
     print(data['form_data'])
     return render_template('results_page.html', recipes=data['recipes'],
         form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f'],
-        page=data['page'], total_pages=[x+2 for x in range(data['total_pages']-1)]) 
+        page=data['page'], total_pages=[x+2 for x in range(data['total_pages']-1)], back_url = back) 
 
 
 
