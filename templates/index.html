@@ -42,137 +42,37 @@
 </section>
 
 <br>
-<div style = "position:relative; left:80px; top:2px">
-  <h4>Trending Recipes</h4>
-</div>
+  <!-- album template - recipes -->
+  <div class="album py-5">
+    <div class="container">
+      <h4>In a hurry? Here are some suggestions:</h4>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-sm-3 g-3">
 
-
-<div class="album py-5 bg-light">
-  <div class="container">
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="{{ url_for('static', filename='pasta.jpg')}}" alt="Pasta" style="width:100%;max-width:600px;height:225px">
-
-          <div class="card-body">
-            <h5 class="mt-0">Creamy Carbonara</h5>
-            <a href="{{ url_for('display_page') }}" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Cooking time: 10 mins</small>
+        <!---Loop and insert all recipes-->
+        {% for r in recipes %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src={{r.image}} alt={{r.label}} style="width:100%;max-width:600px;height:225px">
+            <div class="card-body">
+              <h5 class="mt-0">{{r.label}}</h5>
+              <a href="{{ url_for('display_page', recipe_id=r.url) }}" class="stretched-link"></a>
+              <div class="d-flex justify-content-between align-items-center">
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Cooking time: {{r.totalTime}} mins</small>
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Total calories: {{r.calories}} kcal</small>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+        {% endfor %}
 
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 2</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 3</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 4</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 5</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 6</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 7</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 8</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-          <div class="card-body">
-            <h5 class="mt-0">Recipe 9</h5>
-            <a href="#" class="stretched-link"></a>
-            <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted">Recipe time</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div>    
     </div>
   </div>
-</div>
 
 </main>
 
