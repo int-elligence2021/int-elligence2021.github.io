@@ -46,26 +46,31 @@ def call_api(query, ingr_list, page):
 			# in the case of a 40x error, the filters do not match any recipes (esp. Dietary/Nut req)
 			return {'error': "filters"}, None
 
-		recipe_dict['recipes'] = []
-
 		d=json.loads(resp.text)
-		recipe_dict["total_pages"] = math.ceil(d['count'] / 21)
-		if int(recipe_dict["total_pages"]) > 5:
-			recipe_dict["total_pages"] = 5
 
 		if not d['hits']:
 			# no hits means no recipes
 			return {'error': "ingredients"}, None
 
+		recipe_dict['recipes'] = []
+		recipe_dict['error'] = None
+
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = 0
 			for ingr in recipe['recipe']['ingredients']:
-				# print (ingr)
+				print (ingr)
 				if not any(i in ingr['text'] for i in ingr_list):
 					recipe['recipe']['num_missing'] += 1
 			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
+			recipe['recipe']['totalTime'] = int(recipe['recipe']['totalTime'])
 			# add recipe to dict
+			if recipe['recipe']['totalTime'] == 0:
+				recipe['recipe']['totalTime'] = 25
 			recipe_dict['recipes'].append(recipe['recipe'])
+
+		recipe_dict["total_pages"] = math.ceil(len(recipe_dict['recipes']) / 21)
+		if int(recipe_dict["total_pages"]) > 5:
+			recipe_dict["total_pages"] = 5
 		page = 1
 
 	recipe_dict['start'] = (int(page)-1)*21
