@@ -63,8 +63,11 @@ def results_page():
         data['page'] = f"page{page}"
         data['total_pages'] = recipe_list['total_pages']
 
-        # back to home page
-        back = url_for('index')
+        if int(page) == 1:
+            back = url_for('index')
+        # elif int(page) > 1:
+        #     page = int(page) - 1
+        #     back = url_for('results_page')
 
         #session['url'] = url_for('results_page')
         #e = errorCheck()
