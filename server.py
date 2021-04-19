@@ -44,7 +44,7 @@ def results_page():
             'dishType': dishType,
             'time': time,
             'ingredients': ','.join(ingredients),
-            'num_ingr': num_ingr,
+            'ingr_list': ingredients,
             'excluded': ','.join(excluded),
             'page': page
         })
