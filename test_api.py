@@ -19,8 +19,8 @@ def handle_selections(req):
 	if req['diet'] != '':
 		query=f"{query}&diet={req['diet']}"
 
-	if req['health'] != '':
-		query=f"{query}&health={req['health']}"
+	for h in req['health']:
+		query=f"{query}&health={h}"
 
 	if req['cuisineType'] != '':
 		query=f"{query}&cuisineType={req['cuisineType']}"

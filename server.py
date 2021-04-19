@@ -38,7 +38,7 @@ def results_page():
         page=request.form.get('page')
 
         recipe_list, page = handle_selections({
-            'health': ','.join(health),
+            'health': health,
             'diet': ','.join(diet),
             'cuisineType': cuisineType,
             'dishType': dishType,
