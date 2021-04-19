@@ -14,7 +14,7 @@ def index():
     # Temporarily added to avoid errors when clicked on a 'trending recipe'
     data['form_data'] = formRequest(request.form)
     # data['recipes'] = {}
-    recipes = easy_recipe()
+    recipes = easy_recipe("recipes")
     session['url'] = url_for('index') # stores url of current page so it can be redirected to in the case of ingredient/filter errors
     e = errorCheck()    
     return render_template('index.html', ingred_error=e['i'], filters_error=e['f'], recipes=recipes)
@@ -84,21 +84,21 @@ def display_page():
     recipe_id = request.args.get('recipe_id')
     print(recipe_id)
     recipe_info = display_recipe(recipe_id)
+    from_index = easy_recipe(recipe_id)
+    back = url_for('results_page')
 
-    if not recipe_info:
+    if from_index:
         recipe_info = display_easyrecipe(recipe_id)
-        session['url'] = url_for('index')
-    else:
-        session['url'] = url_for('results_page')
+        back = url_for('index')
 
     if recipe_info["image"][-4:] == '.jpg' and recipe_info["image"][-6:-4] != "-l":
-    	if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
-    		recipe_info['image'] = recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]
+        if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
+            recipe_info['image'] = recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]
     else:
-    	if (requests.head(recipe_info['image'] + "-l").status_code == 200):
-    		recipe_info['image'] = recipe_info['image'] + "-l"
-    
-    return render_template('display_page.html', display=recipe_info, back_url=session['url'])
+        if (requests.head(recipe_info['image'] + "-l").status_code == 200):
+            recipe_info['image'] = recipe_info['image'] + "-l"
+
+    return render_template('display_page.html', display=recipe_info, back_url=back)
 
 
 # saves the user data input into the forms and copies the data onto the next page

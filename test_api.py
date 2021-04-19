@@ -8,7 +8,9 @@ recipe_dict = {
 	'recipes': [],
 	'total_pages':0
 }
+
 ez_list = []
+easy_ids = []
 
 app_key='faa479368d9dd0d427347cfb1a32f2aa'
 app_id='ed9ebd49'
@@ -94,29 +96,10 @@ def display_recipe(id):
 			return display_rec
 	return {}
 
-def easy_recipe():
-	easy_foods = [ 'Eggy Fried Rice', 'Tomato Basil Pasta', 'Banana Pancakes' ]
-	for target_recipe in easy_foods:
-		# print(target_recipe)
-		easyrep_list, page = handle_selections({
-		'health': '',
-		'diet': '',
-		'cuisineType': '',
-		'dishType': '',
-		'time': '1%2B',
-		'ingredients': [ target_recipe ],
-		'num_ingr': 1,
-		'excluded': '',
-		'page': None
-		})
-		for recipe in easyrep_list['recipes']:
-			if len(ez_list) == 3:
-				break
-			if recipe['label'] == target_recipe and recipe not in ez_list:
-				# print(recipe)
-				ez_list.append(recipe)
-				break
-	return ez_list
+def easy_recipe(id):
+	if id == "recipes" or id in easy_ids:
+		return ez_list
+
 
 def display_easyrecipe(id):
 	for recipe in ez_list:
@@ -169,3 +152,27 @@ def sort_by(recipes, sort_option):
 		return sorted(recipes, key=sort_calories)
 	else:
 		return recipes
+
+def easy_generator():
+	easy_foods = [ 'Eggy Fried Rice', 'Tomato Basil Pasta', 'A Bite of Britain: Pancake Day' ]
+	for target_recipe in easy_foods:
+		easyrep_list, page = handle_selections({
+		'health': '',
+		'diet': '',
+		'cuisineType': '',
+		'dishType': '',
+		'time': '1%2B',
+		'ingredients': [ target_recipe ],
+		'num_ingr': 1,
+		'excluded': '',
+		'page': None
+		})
+		for recipe in easyrep_list['recipes']:
+			if len(ez_list) == 3:
+				break
+			if recipe['label'] == target_recipe and recipe not in ez_list:
+				easy_ids.append(recipe['url'])
+				ez_list.append(recipe)
+				break
+
+easy_generator()
