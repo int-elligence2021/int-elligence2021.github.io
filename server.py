@@ -8,10 +8,9 @@ data = {}
 app = Flask(__name__)
 app.secret_key = "int-elligence"
 
-# INDEX DOES NOT SAVE USER SELECTION DATA
+
 @app.route('/')
 def index():
-    # Temporarily added to avoid errors when clicked on a 'trending recipe'
     data['form_data'] = formRequest(request.form)
     # data['recipes'] = {}
     recipes = easy_recipe("recipes")
@@ -63,17 +62,12 @@ def results_page():
         data['page'] = f"page{page}"
         data['total_pages'] = recipe_list['total_pages']
 
-        #session['url'] = url_for('results_page')
-        #e = errorCheck()
-        #return render_template('results_page.html', recipes=data['recipes'], 
-        #    form_data=formRequest(request.form), ingred_error=e['i'], filters_error=e['f'], 
-        #    page=data['page'], total_pages=[x+2 for x in range(data['total_pages']-1)])
 
-    # else request.method == GET
+    # if request.method == GET then come here directly
     # (clicked back button from display page)
     session['url'] = url_for('results_page')
     e = errorCheck()
-    print(data['form_data'])
+    print(f"User data: {data['form_data']}")
     return render_template('results_page.html', recipes=data['recipes'],
         form_data=data['form_data'], ingred_error=e['i'], filters_error=e['f'],
         page=data['page'], total_pages=[x+2 for x in range(data['total_pages']-1)]) 
@@ -82,7 +76,6 @@ def results_page():
 @app.route('/display')
 def display_page():
     recipe_id = request.args.get('recipe_id')
-    print(recipe_id)
     recipe_info = display_recipe(recipe_id)
     from_index = easy_recipe(recipe_id)
     back = url_for('results_page')

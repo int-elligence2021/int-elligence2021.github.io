@@ -16,6 +16,7 @@ app_key='faa479368d9dd0d427347cfb1a32f2aa'
 app_id='ed9ebd49'
 url='https://api.edamam.com/search?'
 
+# processes all user information and inserts it into a url
 def handle_selections(req):
 
 	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=99"
@@ -39,6 +40,7 @@ def handle_selections(req):
 	query+="&imageSize=LARGE"
 	return call_api(query, req['ingr_list'], req['page'])
 
+# process the URL and collect the JSON from the API
 def call_api(query, ingr_list, page):
 	if page is None:
 		resp = requests.get(url + query)
@@ -59,7 +61,7 @@ def call_api(query, ingr_list, page):
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = 0
 			for ingr in recipe['recipe']['ingredients']:
-				print (ingr)
+				#print (ingr)
 				if not any(i in ingr['text'] for i in ingr_list):
 					recipe['recipe']['num_missing'] += 1
 			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
@@ -79,6 +81,7 @@ def call_api(query, ingr_list, page):
 
 	return recipe_dict, page
 
+# given a recipe, collect all information to be displayed on the 'display page'
 def display_recipe(id):
 	for recipe in recipe_dict['recipes']:
 		if recipe['url'] == id:
@@ -138,6 +141,7 @@ def display_easyrecipe(id):
 			return display_rec
 	return {}
 
+# Given a list of recipes to be show, sort them depending on the option selected
 def sort_by(recipes, sort_option):
 	def sort_missing(r):
 			return r['num_missing']
@@ -163,6 +167,7 @@ def sort_by(recipes, sort_option):
 	else:
 		return recipes
 
+# Generates recipes and information shown on index
 def easy_generator():
 	easy_foods = [ 'Eggy Fried Rice', 'Burst Tomato Pasta with Charred Walnuts recipes', 'A Bite of Britain: Pancake Day' ]
 	for target_recipe in easy_foods:

@@ -4,24 +4,6 @@
 
 {% block content %}
 
-<!-- <div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <button type="button" class="btn btn-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Change Ingredients</button>           
-          </li>
-          <li class="nav-item">
-            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Change filters</button>
-          </li> -->
-          <!-- Button trigger sortbyModal -->
-          <!-- <li class="nav-item">
-            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort by</button>
-          </li>
-        </ul>
-      </div>
-    </nav> -->
 
 <!-- main -->
 <main class="col-md-2 ms-sm-auto col-lg-12 px-md-4">
@@ -76,7 +58,7 @@
   <!--Pagination-->
   <br>
   <nav aria-label="...">
-    <ul id="pagination" class="pagination pagination-sm justify-content-end">
+    <ul id="pagination" class="pagination justify-content-end">
       <li id="page1" class="page-item active"><input type="submit" name="page" value="1" class="page-item page-link" disabled></li>
       {% for i in total_pages %}
       <li id="page{{i}}" class="page-item"><input type="submit" name="page" value="{{i}}" class="page-item page-link"></li>
