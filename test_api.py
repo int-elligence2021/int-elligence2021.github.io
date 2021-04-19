@@ -18,7 +18,7 @@ url='https://api.edamam.com/search?'
 
 def handle_selections(req):
 
-	query=f"q={req['ingr_list']}&app_id={app_id}&app_key={app_key}&to=99"
+	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=99"
 	if req['diet'] != '':
 		query=f"{query}&diet={req['diet']}"
 
@@ -166,6 +166,7 @@ def easy_generator():
 		'cuisineType': '',
 		'dishType': '',
 		'time': '1%2B',
+		'ingredients': [ target_recipe ],
 		'ingr_list': [ target_recipe ],
 		'num_ingr': 1,
 		'excluded': '',
