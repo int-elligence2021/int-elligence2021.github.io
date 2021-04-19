@@ -18,7 +18,7 @@ url='https://api.edamam.com/search?'
 
 def handle_selections(req):
 
-	query=f"q={req['ingredients']}&app_id={app_id}&app_key={app_key}&to=99"
+	query=f"q={req['ingr_list']}&app_id={app_id}&app_key={app_key}&to=99"
 	if req['diet'] != '':
 		query=f"{query}&diet={req['diet']}"
 
@@ -60,7 +60,7 @@ def call_api(query, ingr_list, page):
 		for recipe in d['hits']:
 			recipe['recipe']['num_missing'] = 0
 			for ingr in recipe['recipe']['ingredients']:
-				print (ingr)
+				# print (ingr)
 				if not any(i in ingr['text'] for i in ingr_list):
 					recipe['recipe']['num_missing'] += 1
 			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
@@ -158,7 +158,7 @@ def sort_by(recipes, sort_option):
 		return recipes
 
 def easy_generator():
-	easy_foods = [ 'Eggy Fried Rice', 'Tomato Basil Pasta', 'A Bite of Britain: Pancake Day' ]
+	easy_foods = [ 'Eggy Fried Rice', 'Burst Tomato Pasta with Charred Walnuts recipes', 'A Bite of Britain: Pancake Day' ]
 	for target_recipe in easy_foods:
 		easyrep_list, page = handle_selections({
 		'health': '',
@@ -166,7 +166,7 @@ def easy_generator():
 		'cuisineType': '',
 		'dishType': '',
 		'time': '1%2B',
-		'ingredients': [ target_recipe ],
+		'ingr_list': [ target_recipe ],
 		'num_ingr': 1,
 		'excluded': '',
 		'page': None
