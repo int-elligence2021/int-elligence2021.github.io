@@ -87,6 +87,9 @@ def display_page():
 
     if not recipe_info:
         recipe_info = display_easyrecipe(recipe_id)
+        session['url'] = url_for('index')
+    else:
+        session['url'] = url_for('results_page')
 
     if recipe_info["image"][-4:] == '.jpg' and recipe_info["image"][-6:-4] != "-l":
     	if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
@@ -94,21 +97,8 @@ def display_page():
     else:
     	if (requests.head(recipe_info['image'] + "-l").status_code == 200):
     		recipe_info['image'] = recipe_info['image'] + "-l"
-    return render_template('display_page.html', display=recipe_info)
-
-
-# @app.route('/easydisplay')
-# def display_easypage():
-#     recipe_id = request.args.get('recipe_id')
-#     print(recipe_id)
-#     recipe_info = display_recipe(recipe_id)
-#     if recipe_info["image"][-4:] == '.jpg' and recipe_info["image"][-6:-4] != "-l":
-#     	if (requests.head(recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]).status_code == 200):
-#     		recipe_info['image'] = recipe_info['image'][:-4] + "-l" + recipe_info["image"][-4:]
-#     else:
-#     	if (requests.head(recipe_info['image'] + "-l").status_code == 200):
-#     		recipe_info['image'] = recipe_info['image'] + "-l"
-#     return render_template('display_page.html', display=recipe_info)
+    
+    return render_template('display_page.html', display=recipe_info, back_url=session['url'])
 
 
 # saves the user data input into the forms and copies the data onto the next page
