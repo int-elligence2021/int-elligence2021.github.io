@@ -37,9 +37,9 @@ def handle_selections(req):
 		query=f"{query}&excluded={req['excluded']}"
 
 	query+="&imageSize=LARGE"
-	return call_api(query, req['num_ingr'], req['page'])
+	return call_api(query, req['ingr_list'], req['page'])
 
-def call_api(query, num_ingr, page):
+def call_api(query, ingr_list, page):
 	if page is None:
 		resp = requests.get(url + query)
 		if resp.status_code != 200:
@@ -58,7 +58,11 @@ def call_api(query, num_ingr, page):
 			return {'error': "ingredients"}, None
 
 		for recipe in d['hits']:
-			recipe['recipe']['num_missing'] = len(recipe['recipe']['ingredients']) - num_ingr
+			recipe['recipe']['num_missing'] = 0
+			for ingr in recipe['recipe']['ingredients']:
+				print (ingr)
+				if not any(i in ingr['text'] for i in ingr_list):
+					recipe['recipe']['num_missing'] += 1
 			recipe['recipe']['calories'] = round(recipe['recipe']['calories'], 2)
 			# add recipe to dict
 			recipe_dict['recipes'].append(recipe['recipe'])

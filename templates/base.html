@@ -143,7 +143,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
+              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Refine Search</button>
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort</button>
               <input type="submit" value="Find recipes" class="btn btn-primary">
             </div>
@@ -159,12 +159,12 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="filtersModalLabel">Add filters</h5>
+              <h5 class="modal-title" id="filtersModalLabel">Refine Search</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <div class="modal-body">
-              <h5>List of filters...</h5>
+              <h5>Refine your recipes by ...</h5>
               
               <!--- Accordion for list of filters -->
               <div class="accordion accordion-flush" id="filtersAccordian">
@@ -480,7 +480,7 @@
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Enter ingredients</button>
+              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Enter Ingredients</button>
               <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort</button>
               <input type="submit" value="Find recipes" class="btn btn-primary">
             </div>
@@ -496,10 +496,18 @@
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="sortbyModalLabel">Sort Recipes By</h5>
+              <h5 class="modal-title" id="sortbyModalLabel">Sort</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <h5>Sort recipes by ...</h5>
+              
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="missing" name="sortby" value="missing" checked>
+                <label class="form-check-label" for="missing">
+                  Least number of missing ingredients
+                </label>
+              </div>
               
               <div class="form-check">
                 <input class="form-check-input" type="radio" id="alpha" name="sortby" value="alpha">
@@ -527,18 +535,11 @@
                 </label>
               </div>
 
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="missing" name="sortby" value="missing" checked>
-                <label class="form-check-label" for="missing">
-                  Least number of missing ingredients
-                </label>
-              </div>
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Enter ingredients</button>
-              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Add filters</button>
+              <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Enter Ingredients</button>
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#filtersModal">Refine Search</button>
 
               <input type="submit" value="Find recipes" class="btn btn-primary">
             </div>

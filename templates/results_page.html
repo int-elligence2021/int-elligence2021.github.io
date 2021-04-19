@@ -4,33 +4,27 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#ingredientsModal">
-              Ingredients
-            </button>              
+            <button type="button" class="btn btn-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Change Ingredients</button>           
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#filtersModal">
-              Filters
-            </button>
-          </li>
+            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Change filters</button>
+          </li> -->
           <!-- Button trigger sortbyModal -->
-          <li class="nav-item">
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#sortbyModal">
-              Sort By
-            </button>
+          <!-- <li class="nav-item">
+            <button type="button" class="btn btn-outline-primary btn-sm my-2" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort by</button>
           </li>
         </ul>
       </div>
-    </nav>
+    </nav> -->
 
 <!-- main -->
-<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+<main class="col-md-2 ms-sm-auto col-lg-12 px-md-4">
 
 <div class="container"
   data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
@@ -38,10 +32,15 @@
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light">Recipes Found</h1>
-        <h5 class="fw-light">You have all the ingredients!</h5>
+        <h4 class="fw-light">You can make these recipes!</h4>
       </div>
     </div>
   </section>
+
+  <!-- TODO: put centre align ingredients button, left align sort button -->
+  <button type="button" class="btn btn-outline-primary btn-md my-2" data-bs-toggle="modal" data-bs-target="#ingredientsModal">Change Ingredients</button>
+  <button type="button" class="btn btn-outline-primary btn-md my-2" data-bs-toggle="modal" data-bs-target="#filtersModal">Refine Search</button>
+  <button type="button" class="btn btn-outline-primary btn-md my-2" data-bs-toggle="modal" data-bs-target="#sortbyModal">Sort Recipes</button>
 
   <!-- album template - recipes -->
   <div class="album py-5 bg-light">
@@ -53,8 +52,7 @@
         {% for r in recipes %}
         <div class="col">
           <div class="card shadow-sm">
-            <img src={{r.image}} alt={{r.label}} style="width:100%">
-
+            <img src={{r.image}} alt={{r.label}} style="width:100%;height:100%">
             <div class="card-body">
               <h5 class="mt-0">{{r.label}}</h5>
               <a href="{{ url_for('display_page', recipe_id=r.url) }}" class="stretched-link"></a>
