@@ -29,6 +29,7 @@ $("#enteringredients").click(function() {
   input.name = 'addIngred';
   input.value = input_add.value;
 
+  input_add.value = ''; // Removes search term from input field
   li_add.appendChild(input);
   ul_add.appendChild(li_add);
 });
@@ -64,6 +65,7 @@ $("#remingredient").click(function() {
   input.name = 'negSearch';
   input.value = input_rem.value;
 
+  input_rem.value = '';
   li_rem.appendChild(input);
   ul_rem.appendChild(li_rem);
 });
